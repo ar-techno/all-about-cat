@@ -1,73 +1,83 @@
-@extends('layouts.app')
-
+@extends('layouts.login_backend')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+<div class="page-header">
+    <div class="page-header-image" style="background-image:url({{ asset('backend/assets/images/login.jpg')}})"></div>
+    <div class="container">
+        <div class="col-md-12 content-center">
+            <div class="card-plain">
+                <form method="POST" action="{{ route('login') }}">
                         @csrf
+                    <div class="header">
+                        <div class="logo-container">
+                            <img src="{{ asset('backend/assets/images/logo.svg')}}" alt="">
+                        </div>
+                        <h5>{{ __('Login') }}</h5>
+                    </div>
+                    <div class="content">                                                
+                        <div class="input-group input-lg">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-account-circle"></i>
+                            </span>
+                        </div>
+                            @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+                        <div class="input-group input-lg">
+                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-lock"></i>
+                            </span>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
+                             @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
+                    </div>
+                    <div class="footer text-center">
+                         <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">
+                            {{ __('Login') }}
+                        </button>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        @if (Route::has('password.request'))
+                             <h5><a class="link" href="{{ route('password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a></h5>
+                        @endif
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+    <footer class="footer">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="http://thememakker.com/contact/" target="_blank">Contact Us</a></li>
+                    <li><a href="http://thememakker.com/about/" target="_blank">About Us</a></li>
+                    <li><a href="javascript:void(0);">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>,
+                <span>Designed by <a href="http://thememakker.com/" target="_blank">ThemeMakker</a></span>
+            </div>
+        </div>
+    </footer>
 </div>
 @endsection

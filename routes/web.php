@@ -25,3 +25,16 @@
 // Backend
 	Auth::routes();
 
+	// Route::post('/login', 'backend\AuthController@login');
+	// Route::post('/logout','backend\AuthController@logout');
+	// Route::match(['get','post'],'/login','AuthController@login');
+	// Route::post('/login','AuthController@login');
+	Route::group(['middleware' => ['auth']], function () {
+		Route::get('/dashboard', 'backend\Dashboard@index');
+		Route::get('/store', 'backend\StoreInformation@index');
+	});
+
+	Route::get('logout', 'Auth\LoginController@logout', function () {
+    return abort(404);
+});
+
