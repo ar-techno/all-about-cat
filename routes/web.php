@@ -30,8 +30,11 @@
 	// Route::match(['get','post'],'/login','AuthController@login');
 	// Route::post('/login','AuthController@login');
 	Route::group(['middleware' => ['auth']], function () {
+		Route::get('/menu', 'backend\Menu@index');
 		Route::get('/dashboard', 'backend\Dashboard@index');
 		Route::get('/store', 'backend\StoreInformation@index');
+		Route::get('/identitas', 'backend\IdentitasPerusahaan@index');
+		Route::get('/produk-toko-kucing', 'backend\Produk@index');
 	});
 
 	Route::get('logout', 'Auth\LoginController@logout', function () {

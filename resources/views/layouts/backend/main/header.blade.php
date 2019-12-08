@@ -208,30 +208,49 @@
                             <a title="instagram" href="#"><i class="zmdi zmdi-instagram"></i></a>                            
                         </div>
                     </li>
-                    <li class="active open"> <a href="javascript:void(0);" class="menu"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a>
+                    <li class="active open"> <a href="dashboard" class="menu"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a>
+                    </li>
+                    <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Master</span> </a>
+                        <ul class="ml-menu">
+                            <li><a href="identitas">Identitas</a></li>
+                            <li><a href="menu">Menu</a></li>
+                            <li><a href="akses-menu">Akses Menu</a></li>
+                            <li><a href="jenis-vendor">Data Jenis Vendor</a></li>
+                            <li><a href="jasa-layanan">Data Layanan</a></li>
+                            <li><a href="pendaftaran" >Pendaftaran <button style="border: none;border-radius: 50%;" class="m-l-10 color bg-amber not-available"> 1 </button>
+                            </a></li>
+                            <li> <a href="ec-product-List.html">FAQ</a></li>
+                        </ul>
                     </li>
                     <li class="header">Marketplace</li>
                     
-                    <li class="active open"> <a href="javascript:void(0);" class="menu-toggle active"><i class="zmdi zmdi-shopping-cart"></i><span>Ecommerce</span> </a>
-                        <ul class="ml-menu">
-                            <li> <a href="javascript:void(0);" class="menu-toggle">
-                                <div class="demo-google-material-icon"> 
-                                    <i class="material-icons">business_center</i> 
-                                    <span class="icon-name">Toko</span>
-                                </div></a>
-                                 <ul class="ml-menu">
-                                    <li style="margin-left: 20%"> <a href="store">Informasi Toko</a></li>
-                                    <li style="margin-left: 20%"> <a href="ec-dashboard.html">Galery</a></li>
-                                    <li style="margin-left: 20%"> <a href="ec-dashboard.html">Testimonial</a></li>
-                                 </ul>
-                            </li>
-                            <li> <a href="ec-product.html">Klinik Dokter</a></li>
-                            <li> <a href="ec-product-List.html">Groomers</a></li>
-                            <li> <a href="ec-product-List.html">Promo</a></li>
-                            <li> <a href="ec-product-List.html">FAQ</a></li>
-                            <li> <a href="ec-product-List.html">Ekspeditor</a></li>
-                        </ul>
+                    <li> <a href="javascript:void(0);" class="menu-toggle active">
+                        <div class="demo-google-material-icon"><i class="material-icons">business_center</i><span class="icon-name">Toko</span>
+                        </div></a>
+                         <ul class="ml-menu">
+                            <li > <a href="store">Informasi Toko</a></li>
+                            <li > <a href="produk-toko-kucing">Produk</a></li>
+                            <li > <a href="galeri-toko-kucing">Galeri</a></li>
+                         </ul>
                     </li>
+                    <li> <a href="javascript:void(0);" class="menu-toggle">
+                        <div class="demo-google-material-icon"><i class="material-icons">business_center</i><span class="icon-name">Klinik</span>
+                        </div></a>
+                         <ul class="ml-menu">
+                            <li > <a href="store">Informasi Klinik</a></li>
+                            <li > <a href="ec-dashboard.html">Galeri</a></li>
+                         </ul></li>
+                    <li> <a href="javascript:void(0);" class="menu-toggle">
+                        <div class="demo-google-material-icon"><i class="material-icons">business_center</i><span class="icon-name">Groomers</span>
+                        </div></a>
+                         <ul class="ml-menu">
+                            <li > <a href="store">Informasi </a></li>
+                            <li > <a href="ec-dashboard.html">Produk</a></li>
+                            <li > <a href="ec-dashboard.html">Galeri</a></li>
+                         </ul></li>
+                    <li> <a href="ec-product-List.html">Ekspeditor</a></li>
+                    <li> <a href="ec-product-List.html">Promo</a></li>
+
                     <li class="header">Adoption</li>
                     <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Coming soon</span> </a>
                         <ul class="ml-menu">

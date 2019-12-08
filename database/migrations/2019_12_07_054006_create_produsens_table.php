@@ -20,6 +20,7 @@ class CreateProdusensTable extends Migration
             $table->string('email')->nullable();
             $table->text('alamat')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
