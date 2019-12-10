@@ -230,26 +230,26 @@
                          <ul class="ml-menu">
                             <li > <a href="store">Informasi Toko</a></li>
                             <li > <a href="produk-toko-kucing">Produk</a></li>
-                            <li > <a href="galeri-toko-kucing">Galeri</a></li>
+                            <li > <a href="album-toko-kucing">Album /Galeri</a></li>
                          </ul>
                     </li>
                     <li> <a href="javascript:void(0);" class="menu-toggle">
                         <div class="demo-google-material-icon"><i class="material-icons">business_center</i><span class="icon-name">Klinik</span>
                         </div></a>
                          <ul class="ml-menu">
-                            <li > <a href="store">Informasi Klinik</a></li>
-                            <li > <a href="ec-dashboard.html">Galeri</a></li>
+                            <li > <a href="klinik">Informasi Klinik</a></li>
+                             <li > <a href="album-klinik">Album /Galeri</a></li>
                          </ul></li>
                     <li> <a href="javascript:void(0);" class="menu-toggle">
                         <div class="demo-google-material-icon"><i class="material-icons">business_center</i><span class="icon-name">Groomers</span>
                         </div></a>
                          <ul class="ml-menu">
-                            <li > <a href="store">Informasi </a></li>
-                            <li > <a href="ec-dashboard.html">Produk</a></li>
-                            <li > <a href="ec-dashboard.html">Galeri</a></li>
+                            <li > <a href="groomers">Informasi Toko</a></li>
+                            <li > <a href="produk-toko-kucing">Produk</a></li>
+                            <li > <a href="album-groomers">Album /Galeri</a></li>
                          </ul></li>
-                    <li> <a href="ec-product-List.html">Ekspeditor</a></li>
-                    <li> <a href="ec-product-List.html">Promo</a></li>
+                    <li> <a href="dashboard-ekspeditor">Ekspeditor</a></li>
+                    <li> <a href="produk-promo">Promo</a></li>
 
                     <li class="header">Adoption</li>
                     <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Coming soon</span> </a>

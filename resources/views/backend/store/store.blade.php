@@ -5,7 +5,8 @@
 @section('bread') <a href="">Toko Kucing</a> @endsection
 
 @push('style')
-
+<link href="{{ asset('backend/assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
+<link href="{{ asset('backend/assets/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
 @endpush
 @push('scripthead')
 @endpush
@@ -23,20 +24,14 @@
                             </div>
                             <div class="details col-lg-8 col-md-12">
                                 <h3 class="product-title m-b-0">Nama Toko Anda</h3>
-                                <!-- <h4 class="price m-t-0">Hari Kerja: <span class="col-amber">180</span></h4> -->
-                                <div class="rating">
-                                    <div class="stars">
-                                        <span class="zmdi zmdi-star col-amber"></span>
-                                        <span class="zmdi zmdi-star col-amber"></span>
-                                        <span class="zmdi zmdi-star col-amber"></span>
-                                        <span class="zmdi zmdi-star col-amber"></span>
-                                        <span class="zmdi zmdi-star-outline"></span>
-                                    </div>
-                                    <span class="m-l-10">41 reviews</span>
+                                <strong class="price m-t-0">Layanan / Jasa: </strong>
+                                <div class="tag-list">
+                                    <a href="javascript:void(0);" class="btn btn-raised btn-primary btn-simple btn-round">Ronsen</a>
+                                    <a href="javascript:void(0);" class="btn btn-raised btn-success btn-simple btn-round">Faksin</a>
                                 </div>
                                 <hr>
                                 <p class="product-description">Deskripsi Toko Anda Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                <p class="vote"><strong>Slogan</strong> Ini adalah Slogan Toko Anda</p>
+                                <p class="vote"><strong>Slogan</strong> Ini adalah Slogan Toko AndaIni adalah Slogan Toko AndaIni adalah Slogan Toko AndaIni adalah Slogan Toko Anda</p>
                                <div class="row clearfix social-widget">                   
                                     <div class="col-lg-6 col-md-4">
                                         <div class="content">
@@ -53,29 +48,22 @@
                                     </div>
                                     <div class="col-lg-6 col-md-4">
                                             <div class="content">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr><th>Hari Kerja</th><th>Waktu</th></tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Senin</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Selasa</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Rabu</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Kamis</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">Senin <span style="margin-left: 5px;" class="badge badge-success waves-effect"onclick="modal_jam_kerja()"> 07:00 - 16:00 WIB <i class="zmdi zmdi-edit "></i></span> 
+                                                    </li>
+                                                    <li class="list-group-item">Selasa <span style="margin-left: 5px;" class="badge badge-success waves-effect"onclick="modal_jam_kerja()"> 07:00 - 16:00 WIB <i class="zmdi zmdi-edit "></i></span> 
+                                                    </li>
+                                                    <li class="list-group-item">Rabu <span style="margin-left: 5px;" class="badge badge-success waves-effect"onclick="modal_jam_kerja()"> 07:00 - 16:00 WIB <i class="zmdi zmdi-edit "></i></span> 
+                                                    </li>
+                                                    <li class="list-group-item">Kamis <span style="margin-left: 5px;" class="badge badge-success waves-effect"onclick="modal_jam_kerja()"> 07:00 - 16:00 WIB <i class="zmdi zmdi-edit "></i></span> 
+                                                    </li>
+                                                    <li class="list-group-item">Jum'at <span style="margin-left: 5px;" class="badge badge-success waves-effect"onclick="modal_jam_kerja()"> 07:00 - 16:00 WIB <i class="zmdi zmdi-edit "></i></span> 
+                                                    </li>
+                                                    <li class="list-group-item">Sabtu <span style="margin-left: 5px;" class="badge badge-success waves-effect"onclick="modal_jam_kerja()"> 07:00 - 16:00 WIB <i class="zmdi zmdi-edit "></i></span> 
+                                                    </li>
+                                                    <li class="list-group-item">Minggu <span style="margin-left: 5px;" class="badge badge-success waves-effect"onclick="modal_jam_kerja()"> 07:00 - 16:00 WIB <i class="zmdi zmdi-edit "></i></span> 
+                                                    </li>
+                                                </ul>
                                             </div>
                                     </div>
                                 </div>
@@ -159,11 +147,19 @@
         </div>
     </div>  
     @include('backend.store.ar-form.store')
+    @include('backend.store.ar-form.store-jam-kerja')
 @endsection
 @push('scriptbottom')
+<script src="{{ asset('backend/assets/plugins/momentjs/moment.js')}}"></script> <!-- Moment Plugin Js --> 
+<script src="{{ asset('backend/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script> 
+<script src="{{ asset('backend/assets/js/pages/forms/basic-form-elements.js')}}"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="{{ asset('backend/assets/plugins/gmaps/gmaps.js')}}"></script>
 <script type="text/javascript">
+    function modal_jam_kerja() {
+        $('#ar-modal-jam-kerja').modal('show');
+        $('.modal-backdrop').hide();    
+    }
     function openModaledit() {
         $('#ar-modal-edit').modal('show');
         $('.modal-backdrop').hide();

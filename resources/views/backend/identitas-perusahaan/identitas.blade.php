@@ -42,6 +42,11 @@
                                                 	<div class="tab-pane active" id="product_1"><img src="{{asset('backend/assets/images/icon/store.ico')}}" class="img-fluid rounded img-raised" /></div>
                                                 	</div>
                                                 </p>
+                                                
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-4">
+                                            <div class="content">
                                                 <small class="text-muted">Email Kantor: </small>
                                                 <p>arwahyu01@gmail.com</p>
                                                 <hr>
@@ -54,45 +59,6 @@
                                                 <small class="text-muted"> <a title="instagram" href="#" class=" waves-effect waves-block"><i class="zmdi zmdi-twitter"></i> <span style="color: #000;">Twitter</span> </a> </small>
                                                 <p>~ @arwahyupradana</p>
                                                 <hr>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-4">
-                                            <div class="content">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr><th>Hari Kerja</th><th>Waktu</th></tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Senin</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Selasa</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Rabu</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Kamis</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Jum'at</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Sabtu</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Minggu</td>
-                                                            <td> 07:00 - 16:00 WIB</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
                                             </div>
                                     </div>
                                 </div>
@@ -144,8 +110,10 @@
 		$('#ar-modal-img').modal('show');
 		$('.modal-backdrop').hide();	
 	}
+
 </script>
 <script src="{{ asset('backend/assets/plugins/momentjs/moment.js')}}"></script> <!-- Moment Plugin Js --> 
 <script src="{{ asset('backend/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script> 
-<script src="{{ asset('backend/assets/js/pages/forms/basic-form-elements.js')}}"></script> 
+<script src="{{ asset('backend/assets/js/pages/forms/basic-form-elements.js')}}"></script>
+
 @endpush

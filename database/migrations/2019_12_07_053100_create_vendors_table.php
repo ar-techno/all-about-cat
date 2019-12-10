@@ -30,6 +30,7 @@ class CreateVendorsTable extends Migration
             $table->decimal('longitude', 11, 8)->nullable();
             $table->smallInteger('radius')->nullable()->default(20);
             $table->json('detail')->nullable();
+            $table->string('parent_id')->nullable()->after('detail');
             $table->timestamps();
             $table->softDeletes();
         });

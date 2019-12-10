@@ -25,6 +25,8 @@ class CreatePerusahaansTable extends Migration
             $table->string('slogan')->nullable();
             $table->text('tentang')->nullable();
             $table->datetime('tgl_launcing')->nullable();
+            $table->string('favicon')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

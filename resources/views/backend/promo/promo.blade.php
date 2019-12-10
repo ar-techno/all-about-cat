@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 @section('title', 'AAC')
-@section('header','Produk')
-@section('subheader','Pengaturan Produk Dijual')
+@section('header','Promo')
+@section('subheader','Promo Produk')
 @section('bread') <a href="">Produk</a> @endsection
 
 @push('style')
@@ -24,14 +24,14 @@
                         <button type="button" class="btn btn-info waves-effect btn-sm"  onclick="modal_add_show()"><i class="zmdi zmdi-plus "></i> Tambah</button>
                     </div>
                     <div class="body table-responsive">
-                        <table class="table table-striped m-b-0">
+                        <table class="table table-hover m-b-0">
                             <thead>
                                 <tr>
                                     <th>Gambar</th>
                                     <th>Nama Produk</th>
-                                    <th data-breakpoints="xs">Keterangan</th>
+                                    <th data-breakpoints="sm xs">Keterangan</th>
                                     <th data-breakpoints="xs">Harga</th>
-                                    <th data-breakpoints="xs">Stock</th>
+                                    <th data-breakpoints="xs md">Stock</th>
                                     <th data-breakpoints="sm xs md">Action</th>
                                 </tr>
                             </thead>
@@ -64,7 +64,7 @@
                                     <td>Simple Black Clock</td>
                                     <td><span class="text-muted">randomised words even slightly believable</span></td>
                                     <td>$16.00</td>
-                                    <td><span class="col-green">In Stock</span></td>
+                                    <td><span class="col-ember">Low Stock</span></td>
                                     <td>
                                         <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
                                         <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a>
