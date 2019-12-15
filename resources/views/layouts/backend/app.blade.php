@@ -6,11 +6,13 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
 <title>@yield('title')</title>
-<link rel="icon" href="{{asset('backend/favicon.ico')}}" type="image/x-icon"> <!-- Favicon-->
+<link rel="icon" href="{{url('favicon')}}" type="image/x-icon"> <!-- Favicon-->
 <link rel="stylesheet" href="{{ asset('backend/assets/plugins/bootstrap/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/plugins/sweetalert/sweetalert.css')}}"/>
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{ asset('backend/assets/css/main.css')}}">
 <link rel="stylesheet" href="{{ asset('backend/assets/css/color_skins.css')}}">
+
 @stack('style')
 @stack('scripthead')
 </head>
@@ -54,7 +56,8 @@
 <script src="{{ asset('backend/assets/bundles/vendorscripts.bundle.js')}}"></script> <!-- slimscroll, waves Scripts Plugin Js -->
 
 @stack('scriptbottom')
-
+<script src="{{ asset('backend/assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{ asset('backend/assets/js/pages/ui/dialogs.js')}}"></script>
 <script src="{{ asset('backend/assets/bundles/mainscripts.bundle.js')}}"></script>
 <script src="{{ asset('backend/assets/js/pages/index.js')}}"></script>
 </body>

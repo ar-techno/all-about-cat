@@ -15,12 +15,13 @@ class CreateMenusTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kode', 50)->unique();
             $table->string('nama');
             $table->string('link');
             $table->string('icon');
             $table->boolean('status')->default(1);
             $table->boolean('tampil')->default(1);
+            $table->integer('parent_menu_id')->nullable()->index();
+            $table->integer('parent_submenu_id')->nullable()->index();
             $table->timestamps();
         });
     }

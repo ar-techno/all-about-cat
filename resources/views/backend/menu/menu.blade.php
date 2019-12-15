@@ -1,3 +1,4 @@
+<?php use App\menu; ?>
 @extends('layouts.backend.app')
 @section('title', 'Setting Manu')
 @section('header','Setting Menu')
@@ -21,14 +22,16 @@
                         <h2><strong>Tambah Menu</strong> <small></small> </h2>
                     </div>
                     <div class="body">
-                    	<form class="form-horizontal">
+                    	<form class="form-horizontal" id="ar-modal-form-menu">
+                    		{{ csrf_field() }}
                             <div class="row clearfix">
                                 <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
                                     <label for="nama_menu">Nama Menu</label>
                                 </div>
                                 <div class="col-lg-9 col-md-10 col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" id="nama_menu" class="form-control" placeholder="Nama Menu" required>
+                                        <input type="text" id="id" name="id" class="form-control" placeholder="Nama Menu" >
+                                        <input type="text" id="nama_menu" name="nama_menu" class="form-control" placeholder="Nama Menu" required>
                                     </div>
                                 </div>
                             </div>
@@ -38,11 +41,11 @@
                                 </div>
                                 <div class="col-lg-9 col-md-10 col-sm-8">
                                     <div class="form-group">
-		                              	<select class="form-control show-tick">
+		                              	<select class="form-control show-tick" id="group_menu" name="group_menu">
 		                                    <option value="">-- Tidak Ada --</option>
-		                                    <option value="10">Data Master</option>
-		                                    <option value="20">E-Commers</option>
-		                                    <option value="30">Adoption</option>
+		                              		@foreach($data as $m)
+		                                    <option value="{{$m->id}}">{{$m->nama}}</option>
+		                              		@endforeach
 		                                </select>
                                     </div>
                                 </div>
@@ -53,7 +56,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-10 col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" id="col" class="form-control" placeholder="Link / Url Menu ex( menu )" required>
+                                        <input type="text" id="link" name="link" class="form-control" placeholder="Link / Url Menu ex( menu )" required>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +66,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-10 col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" id="icon_menu" class="form-control" placeholder="Icon" required>
+                                        <input type="text" id="icon_menu" name="icon_menu" class="form-control" placeholder="Icon" required>
                                     </div>
                                     <div class="row  demo-icon-container" style="font-size: 10px;height: 250px;overflow: auto;">
 										<div class="col-sm-9 col-md-4 col-lg-3 col-xl-6">
@@ -438,11 +441,26 @@
 			                        </div>
 			                    </div>
 			                </div>
+
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
+                                    <label for="password_2">Tampil</label>
+                                </div>
+                                <div class="col-lg-9 col-md-10 col-sm-8">
+                                    <div class="form-group">
+		                              	<select class="form-control show-tick" id="tampil" name="tampil">
+		                                    <option value="">-- Tidak Ada --</option>
+		                                    <option value="1">Ya</option>
+		                                    <option value="0">Tidak</option>
+		                                </select>
+                                    </div>
+                                </div>
+                            </div>
 			                <hr>
                             <div class="row clearfix">
                                 <div class="col-sm-8 ">
-                                    <button type="button" class="btn btn-raised btn-warning btn-round waves-effect">Batal</button>
-                                    <button type="button" class="btn btn-raised btn-primary btn-round waves-effect">Simpan</button>
+                                    <button type="reset" class="btn btn-raised btn-warning btn-round waves-effect">Batal</button>
+                                    <button type="button" id="save_menu" class="btn btn-raised btn-primary btn-round waves-effect">Simpan</button>
                                 </div>
                             </div>
                         </form>
@@ -457,71 +475,56 @@
                         <h2><strong>Susun</strong> Menu <small>Urutkan Data Menu Sesuai Kebutuhan</small> </h2>
                     </div>
                     <div class="body">
-                    	<form class="form-horizontal">
+
+                    	<form class="form-horizontal" id="form-struktur-menu">
 	                    	<div class="row clearfix">
-		                        <div class="col-lg-12 col-md-12 col-sm-8 dd">
-		                            <ol class="dd-list">
-		                                <li class="dd-item" data-id="1">
-		                                    <div class="dd-handle">Dashboard</div>
-		                                </li>
-		                                <li class="dd-item" data-id="2">
-		                                    <div class="dd-handle">Master</div>
-		                                    <ol class="dd-list">
-		                                        <li class="dd-item" data-id="3">
-		                                            <div class="dd-handle">Menu</div>
-		                                        </li>
-		                                        <li class="dd-item" data-id="3">
-		                                            <div class="dd-handle">Akses Menu</div>
-		                                        </li>
-		                                        <li class="dd-item" data-id="3">
-		                                            <div class="dd-handle">Jenis Vendor</div>
-		                                        </li>
-		                                        <li class="dd-item" data-id="4">
-		                                            <div class="dd-handle">Faq</div>
-		                                        </li>
-		                                    </ol>
-		                                </li>
-		                                <li class="dd-item" data-id="11">
-		                                    <div class="dd-handle">e-commers</div>
-		                                    <ol class="dd-list">
-		                                        <li class="dd-item" data-id="5">
-		                                            <div class="dd-handle">Toko</div>
-		                                            <ol class="dd-list">
-		                                                <li class="dd-item" data-id="6">
-		                                                    <div class="dd-handle">Informasi Toko</div>
-		                                                </li>
-		                                                <li class="dd-item" data-id="7">
-		                                                    <div class="dd-handle">Geleri</div>
-		                                                </li>
-		                                                <li class="dd-item" data-id="8">
-		                                                    <div class="dd-handle">Testimonial</div>
-		                                                </li>
-		                                            </ol>
-		                                        </li>
-		                                        <li class="dd-item" data-id="9">
-		                                            <div class="dd-handle">Klinik Dokter</div>
-		                                        </li>
-		                                        
-		                                        <li class="dd-item" data-id="10">
-		                                            <div class="dd-handle">Groomers</div>
-		                                        </li>
-		                                        <li class="dd-item" data-id="11">
-		                                            <div class="dd-handle">Ekspeditor</div>
-		                                        </li>
-		                                    </ol>
-		                                </li>
-		                                <li class="dd-item" data-id="12">
-		                                    <div class="dd-handle">Adoption</div>
-		                                </li>
-		                            </ol>
-		                        </div>
+                			<div class="nestable-with-handle col-lg-12 col-md-12 col-sm-12 dd " id="menu">
+                            	<li class="dd-item dd3-item" data-id="0">
+	                                <div class="dd-handle dd3-handle"></div>
+	                                <div class="dd3-content">Dashboard</div>
+	                            </li>
+                                <ol class="dd-list">
+                                @foreach($data as $m)
+                                    <li class="dd-item dd3-item" data-id="{{$m->id}}">
+                                        <div class="dd-handle dd3-handle"></div>
+                                        <div class="dd3-content">
+                                        	<a onclick="editMenu('{{$m->id}}')" >{{$m->nama}} <i class="zmdi zmdi-edit"></i></a>
+                                        </div>
+                                        <?php 
+	                                    	$mainMenu=menu::whereNotNull('parent_menu_id')->where('parent_submenu_id',null)->where('parent_menu_id',$m->id)->where('tampil',1)->orderBy('posisi','asc')->get();
+		                                    	
+		                                    if (count($mainMenu) > 0) {?>
+                                        	<ol class="dd-list">
+                                            @foreach($mainMenu as $m)
+	                                            <li class="dd-item dd3-item" data-id="{{$m->id}}">
+	                                                <div class="dd-handle dd3-handle"></div>
+	                                                <div class="dd3-content">
+	                                                	<a onclick="editMenu('{{$m->id}}')" >{{$m->nama}} <i class="zmdi zmdi-edit"></i></a>
+	                                                </div>
+	                                            </li>
+                                        	@endforeach
+			                                </ol>
+		                                <?php
+		                                    }
+		                                ?>
+                                    </li>
+                                @endforeach
+                                </ol>
+                                
+                            </div>
 	                    	</div>
 	                    	<hr>
+	                    	
+
 	                        <div class="row clearfix">
+	                        	<form class="form-list" method="post" action="{{ url('menu/update-struktur') }}">
+	    						{{ csrf_field() }}
+	    						<textarea cols="30" rows="3" name="output-list" id="output" class="form-control no-resize" readonly hidden></textarea>
 	                                <div class="col-sm-8 ">
 	                                    <button type="button" class="btn btn-raised btn-warning btn-round waves-effect">Batal</button>
-	                                    <button type="button" class="btn btn-raised btn-primary btn-round waves-effect">Simpan</button>
+	                                    <button type="button" id="save_struktur" class="btn btn-raised btn-primary btn-round waves-effect">Simpan</button>
 	                                </div>
+	    						</form>
 	                        </div>
                     	</form>
                     </div>
@@ -533,6 +536,113 @@
 
 @endsection
 @push('scriptbottom')
+<script type="text/javascript">
+	$(function(){
+			var updateOutput = function(e){
+				var list = e.length ? e : $(e.target),
+					output = list.data('output');
+				if(window.JSON){
+					output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+				}
+				else{
+					output.val('JSON browser support required for this demo.');
+				}
+			};
+			$('#menu').nestable().on('change', updateOutput);
+			updateOutput($('#menu').data('output', $('#output')));
+	});
+
+	function editMenu(id) {
+		var url  = "{{ url('data-menu/show-edit') }}"+'/'+id;
+        $.ajax({
+            processData: false,
+            contentType: false,
+            cache: false,
+            type: "get",
+            enctype: 'multipart/form-data',
+            url: url,
+            timeout: 600000,
+            success : function(e) {
+              $('#ar-modal-form-menu #id').val(e.id);
+              $('#ar-modal-form-menu #nama_menu').val(e.nama);
+              $('#ar-modal-form-menu #link').val(e.link);
+              $('#ar-modal-form-menu #icon_menu').val(e.icon);
+            },
+            error : function(e){
+             showErrorMessage();
+            }
+        });
+	 } 
+
+    // Simpan Data Menu
+        $('#save_menu').on('click', function (e){
+            var form = $('#ar-modal-form-menu')[0];
+            var data = new FormData(form);
+            if ($('#ar-modal-form-menu #id').val() == '') {
+	            var url  = "{{ url('data-menu/save') }}";
+            }
+            else
+            {
+	            var url  = "{{ url('data-menu/edit') }}";
+            }
+            $.ajax({
+                processData: false,
+                contentType: false,
+                cache: false,
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: url,
+                data: data,
+                timeout: 600000,
+                success : function(e) {
+                    if (e == 1) {
+                        document.getElementById("ar-modal-form-menu").reset();
+                        showAjaxLoaderSuccesMessage();
+                        
+                    }
+                    else
+                    {
+                        showErrorMessage();
+                    }                  
+                },
+                error : function(e){
+                 showErrorMessage();
+                }
+            });
+        });
+    // Batas
+    // Simpan Data Struktur
+        $('#save_struktur').on('click', function (e){
+            var form = $('#form-struktur-menu')[0];
+            var data = new FormData(form);
+            var url  = "{{ url('data-menu/update-struktur') }}";
+            $.ajax({
+                processData: false,
+                contentType: false,
+                cache: false,
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: url,
+                data: data,
+                timeout: 600000,
+                success : function(e) {
+                    if (e == 1) {
+                        showAjaxLoaderSuccesMessage();
+                        
+                    }
+                    else
+                    {
+                        showErrorMessage();
+                    }                  
+                },
+                error : function(e){
+                 showErrorMessage();
+                }
+            });
+        });
+    // Batas
+
+</script>
 <script src="{{ asset('backend/assets/plugins/nestable/jquery.nestable.js')}}"></script> <!-- Jquery Nestable -->
 <script src="{{ asset('backend/assets/js/pages/ui/sortable-nestable.js')}}"></script> 
 @endpush

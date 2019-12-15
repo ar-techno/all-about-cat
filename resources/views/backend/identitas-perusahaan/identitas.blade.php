@@ -19,27 +19,25 @@
                         <div class="row">
                             <div class="preview col-lg-4 col-md-12">
                                 <div class="preview-pic tab-content">
-                                    <div class="tab-pane active" id="product_1"><img src="{{asset('backend/assets/images/ecommerce/1.png')}}" class="img-fluid rounded img-raised" /></div>
+                                    <div class="tab-pane active" id="product_1"><img src="{{url('data-identitas/getImageLogo/'.$logo)}}" class="img-fluid rounded img-raised" /></div>
                                      <div class="action">
-                                	<button type="button" class="btn btn-info waves-effect btn-sm"  onclick="modal_img_show()"><i class="zmdi zmdi-edit "></i></button>
                                 </div>
                                 </div>
                             </div>
                             <div class="details col-lg-8 col-md-12">
-                                <h3 class="product-title m-b-0">All About Cat</h3>
+                                <h3 class="product-title m-b-0">{{$nama_perusahaan}}</h3>
                                 <!-- <h4 class="price m-t-0">Hari Kerja: <span class="col-amber">180</span></h4> -->
                                 <hr>
-                                <p class="product-description">Deskripsi Toko Anda Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                <p class="vote"><strong>Slogan</strong> Ini adalah Slogan Toko Anda</p>
+                                <p class="vote"><strong>Slogan</strong> {{$slogan}}</p>
                                <div class="row clearfix social-widget">                   
                                     <div class="col-lg-6 col-md-4">
                                         <div class="content">
                                                 <small class="text-muted">Website: </small>
-                                                <p>www.aac.com</p>
+                                                <p>{{$website}}</p>
                                                 <hr>
                                                 <small class="text-muted"> Favicon:</small>
                                                 <p> <div class="preview-pic tab-content">
-                                                	<div class="tab-pane active" id="product_1"><img src="{{asset('backend/assets/images/icon/store.ico')}}" class="img-fluid rounded img-raised" /></div>
+                                                	<div class="tab-pane active" id="product_1"><img src="{{url('data-identitas/getImageFavicon/'.$favicon)}}" class="img-fluid rounded img-raised" width="100px" /></div>
                                                 	</div>
                                                 </p>
                                                 
@@ -48,16 +46,16 @@
                                     <div class="col-lg-6 col-md-4">
                                             <div class="content">
                                                 <small class="text-muted">Email Kantor: </small>
-                                                <p>arwahyu01@gmail.com</p>
+                                                <p>{{$email}}</p>
                                                 <hr>
                                                 <small class="text-muted">Phone: </small>
-                                                <p>~ 0822-8324-8796</p>
+                                                <p>~ {{$telp}}</p>
                                                 <hr>
                                                 <small class="text-muted"> <a title="instagram" href="#" class=" waves-effect waves-block"><i class="zmdi zmdi-instagram"></i> <span style="color: #000;">Instagram</span> </a> </small>
-                                                <p>~ @arwahyupradana</p>
+                                                <p>~ {{$instagram}}</p>
                                                 <hr>
                                                 <small class="text-muted"> <a title="instagram" href="#" class=" waves-effect waves-block"><i class="zmdi zmdi-twitter"></i> <span style="color: #000;">Twitter</span> </a> </small>
-                                                <p>~ @arwahyupradana</p>
+                                                <p>~ {{$twitter}}</p>
                                                 <hr>
                                             </div>
                                     </div>
@@ -83,13 +81,13 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="description">
                                 <small class="text-muted">Alamat Perusahaan: </small>
-                                <p>Unnamed Road, Pandau Jaya, Kec. Siak Hulu, Kampar, Riau 28284, Indonesia</p>
+                                <p>{{$alamat}}</p>
                                 <hr>
                             </div>
                             <div class="tab-pane" id="about">
                                 <h6>Where does it come from?</h6>
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-                                <p>AAC berdiri : 20 Desember 2019</p>
+                                <p>{{$tentang}}</p>
+                                <p>{{$nama_perusahaan}} berdiri : {{$tgl_launcing}}</p>
                             </div>
                         </div>
                     </div>
@@ -102,17 +100,45 @@
 @endsection
 @push('scriptbottom')
 <script type="text/javascript">
-	function modal_edit_show() {
-		$('#ar-modal-edit').modal('show');
-		$('.modal-backdrop').hide();	
-	}
-	function modal_img_show() {
-		$('#ar-modal-img').modal('show');
-		$('.modal-backdrop').hide();	
-	}
+    function modal_edit_show() {
+        $('#ar-modal-edit').modal('show');
+        $('.modal-backdrop').hide();    
+    }
 
+    // Simpan Data Identitas Perusahaan
+        $('#save-data-form').on('click', function (e){
+            var form = $('#ar-modal-form')[0];
+            var data = new FormData(form);
+            var url  = "{{ url('data-identitas/update') }}";
+            $.ajax({
+                processData: false,
+                contentType: false,
+                cache: false,
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: url,
+                data: data,
+                timeout: 600000,
+                success : function(e) {
+                    if (e == 1) {
+                        $('#ar-modal-edit').modal('hide');
+                        showAjaxLoaderSuccesMessage();
+                        
+                    }
+                    else
+                    {
+                        showErrorMessage();
+                    }                  
+                },
+                error : function(e){
+                 showErrorMessage();
+                }
+            });
+        });
+    // Batas
 </script>
-<script src="{{ asset('backend/assets/plugins/momentjs/moment.js')}}"></script> <!-- Moment Plugin Js --> 
+<!-- <script src="{{ asset('backend/assets/js/backend/identitas-perusahaan/data-proses.js')}}"></script> -->
+<script src="{{ asset('backend/assets/plugins/momentjs/moment.js')}}"></script> 
 <script src="{{ asset('backend/assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script> 
 <script src="{{ asset('backend/assets/js/pages/forms/basic-form-elements.js')}}"></script>
 

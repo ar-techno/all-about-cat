@@ -8,6 +8,10 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public function akses_group()
+    {
+        return $this->belongsTo('App\akses_group');
+    }
     use Notifiable;
 
     /**
@@ -36,4 +40,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

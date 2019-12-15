@@ -19,7 +19,7 @@ class CreateAksesmenusTable extends Migration
             $table->integer('akses_group_id')->unsigned()->nullable();
             $table->timestamps();
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('CASCADE');
-            $table->foreign('akses_group_id')->references('id')->on('akses_group')->onDelete('CASCADE');
+            $table->foreign('akses_group_id')->references('id')->on('akses_groups')->onDelete('CASCADE');
 
         });
     }

@@ -44,7 +44,11 @@ function showWithTitleMessage() {
 }
 
 function showSuccessMessage() {
-    swal("Good job!", "You clicked the button!", "success");
+    swal("Success !", "Data Berhasil Disimpan ..", "success");
+}
+
+function showErrorMessage() {
+    swal("Ooops !", "Gagal Menyimpan Data", "error");
 }
 
 function showConfirmMessage() {
@@ -136,5 +140,16 @@ function showAjaxLoaderMessage() {
         setTimeout(function () {
             swal("Ajax request finished!");
         }, 2000);
+    });
+}
+function showAjaxLoaderSuccesMessage() {
+    swal({
+        title: "Success",
+        text: "Data Berhasil Disimpan ..",
+        type: "success",
+        timer: 1500,
+        showLoaderOnConfirm: true,
+    }, function () {
+            location.reload();
     });
 }

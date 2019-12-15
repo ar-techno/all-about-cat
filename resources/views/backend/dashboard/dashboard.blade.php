@@ -1,8 +1,8 @@
 @extends('layouts.backend.app')
-@section('title', 'Setting Manu')
-@section('header','Setting Menu')
-@section('subheader','Pengaturan Data Menu Master')
-@section('bread') <a href="">Menu</a> @endsection
+@section('title', 'Dashboard')
+@section('header','Dashboard')
+@section('subheader','Selamat Datang Di AAC')
+@section('bread') <a href="">Dashboard</a> @endsection
 
 @push('style')
 

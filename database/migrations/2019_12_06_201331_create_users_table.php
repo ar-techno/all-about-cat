@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('akses_group_id')->references('id')->on('akses_group')->onDelete('set null');
+            $table->foreign('akses_group_id')->references('id')->on('akses_groups')->onDelete('set null');
         });
     }
 

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateSubmenusTable extends Migration
+class CreateAksessubmenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class CreateSubmenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('submenus', function (Blueprint $table) {
+        Schema::create('aksessubmenus', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('menu_id')->unsigned()->nullable();
-            $table->string('kode', 50)->unique();
-            $table->string('nama');
-            $table->string('link');
-            $table->string('icon');
-            $table->boolean('status')->default(1);
-            $table->boolean('tampil')->default(1);
+            $table->integer('akses_group_id')->unsigned()->nullable();
             $table->timestamps();
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('CASCADE');
+            $table->foreign('akses_group_id')->references('id')->on('akses_groups')->onDelete('CASCADE');
         });
     }
 
@@ -34,6 +30,6 @@ class CreateSubmenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submenus');
+        Schema::dropIfExists('aksessubmenus');
     }
 }

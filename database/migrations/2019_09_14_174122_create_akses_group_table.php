@@ -13,7 +13,7 @@ class CreateAksesGroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('akses_group', function (Blueprint $table) {
+        Schema::create('akses_groups', function (Blueprint $table) {
             $table->increments('id')->unsigned()->nullable();
             $table->string('nama');
             $table->string('alias')->nullable()->unique();

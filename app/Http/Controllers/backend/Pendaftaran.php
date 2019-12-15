@@ -5,7 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Menu extends Controller
+class Pendaftaran extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class Menu extends Controller
      */
     public function index()
     {
-        return view('backend/menu/menu');
+        return view('backend/pendaftaran/pendaftaran');
     }
 
     /**
