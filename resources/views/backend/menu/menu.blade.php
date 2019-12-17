@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-10 col-sm-8">
                                     <div class="form-group">
-                                        <input type="text" id="id" name="id" class="form-control" placeholder="Nama Menu" >
+                                        <input type="number" id="id" name="id" class="form-control" hidden >
                                         <input type="text" id="nama_menu" name="nama_menu" class="form-control" placeholder="Nama Menu" required>
                                     </div>
                                 </div>
@@ -479,10 +479,6 @@
                     	<form class="form-horizontal" id="form-struktur-menu">
 	                    	<div class="row clearfix">
                 			<div class="nestable-with-handle col-lg-12 col-md-12 col-sm-12 dd " id="menu">
-                            	<li class="dd-item dd3-item" data-id="0">
-	                                <div class="dd-handle dd3-handle"></div>
-	                                <div class="dd3-content">Dashboard</div>
-	                            </li>
                                 <ol class="dd-list">
                                 @foreach($data as $m)
                                     <li class="dd-item dd3-item" data-id="{{$m->id}}">

@@ -15,7 +15,7 @@ class Menus extends Controller
      */
     public function index()
     {
-        $menu = menu::where('parent_menu_id',null)->where('parent_submenu_id',null)->where('tampil',1)->get();
+        $menu = menu::where('parent_menu_id',null)->where([['parent_submenu_id',null],['tampil',1]])->orderBy('posisi','asc')->get();
         $data['data'] = $menu;
         return view('backend/menu/menu',$data);
     }

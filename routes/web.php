@@ -38,10 +38,10 @@
 	// Route::post('/logout','backend\AuthController@logout');
 	// Route::match(['get','post'],'/login','AuthController@login');
 	// Route::post('/login','AuthController@login');
-	Route::group(['middleware' => ['auth']], function () {
-		Route::get('/dashboard', 'backend\Dashboard@index');
+	Route::group(['middleware' => ['hakakses']], function () {
+		Route::get('/dashboard', 'backend\Dashboard@index')->name('dashboard');
 
-		Route::get('/menu', 'backend\Menus@index');
+		Route::get('/menu', 'backend\Menus@index')->name('menu');
 		Route::prefix('data-menu')->as('menu')->group(function(){
 			Route::post('/save','backend\Menus@store');
 			Route::post('/edit','backend\Menus@update');
@@ -49,7 +49,7 @@
 			Route::get('/show-edit/{id}', 'backend\Menus@show');
 		});
 
-		Route::get('/identitas', 'backend\IdentitasPerusahaan@index');
+		Route::get('/identitas', 'backend\IdentitasPerusahaan@index')->name('identitas');
 		Route::prefix('data-identitas')->as('identitas')->group(function(){
 			Route::post('/update','backend\IdentitasPerusahaan@edit');
 			Route::get('/getImageLogo/{image}', function ($img = null) {
@@ -61,19 +61,19 @@
 
 		});
 	
-		Route::get('/store', 'backend\StoreInformation@index');
-		Route::get('/klinik', 'backend\StoreInformation@index');
-		Route::get('/groomers', 'backend\StoreInformation@index');
+		Route::get('/store', 'backend\StoreInformation@index')->name('store');
+		Route::get('/klinik', 'backend\StoreInformation@index')->name('klinik');
+		Route::get('/groomers', 'backend\StoreInformation@index')->name('groomers');
 
-		Route::get('/produk-toko-kucing', 'backend\Produk@index');
-		Route::get('/produk-groomers', 'backend\Produk@index');
-		Route::get('/album-toko-kucing', 'backend\Album@index');
-		Route::get('/album-klinik', 'backend\Album@index');
-		Route::get('/album-groomers', 'backend\Album@index');
-		Route::get('/dashboard-ekspeditor', 'backend\Ekspeditor@index');
-		Route::get('/produk-promo', 'backend\Promo@index');
+		Route::get('/produk-toko-kucing', 'backend\Produk@index')->name('produk-toko-kucing');
+		Route::get('/produk-groomers', 'backend\Produk@index')->name('produk-groomers');
+		Route::get('/album-toko-kucing', 'backend\Album@index')->name('album-toko-kucing');
+		Route::get('/album-klinik', 'backend\Album@index')->name('album-klinik');
+		Route::get('/album-groomers', 'backend\Album@index')->name('album-groomers');
+		Route::get('/dashboard-ekspeditor', 'backend\Ekspeditor@index')->name('dashboard-ekspeditor');
+		Route::get('/produk-promo', 'backend\Promo@index')->name('produk-promo');
 
-		Route::get('/akses-menu', 'backend\AksesMenu@index');
+		Route::get('/akses-menu', 'backend\AksesMenu@index')->name('akses-menu');
 		Route::prefix('akses-menu')->as('akses-menu')->group(function(){
 			Route::post('/save-main','backend\AksesMenu@store');
 			Route::post('/edit-main','backend\AksesMenu@update');
@@ -83,11 +83,11 @@
 			Route::post('/save-submenu','backend\AksesMenu@store_submenu');
 			Route::get('/show-submenu/{id}','backend\AksesMenu@showSubmenu');
 			Route::post('/edit-submenu','backend\AksesMenu@updateSubmenu');
-			Route::post('/del-submain/{id}','backend\AksesMenu@destroySubmenu');
+			Route::post('/del-submenu/{id}','backend\AksesMenu@destroySubmenu');
 		});
 
-		Route::get('/jenis-vendor', 'backend\JenisVendor@index');
-		Route::get('/pendaftaran', 'backend\Pendaftaran@index');
+		Route::get('/jenis-vendor', 'backend\JenisVendor@index')->name('jenis-vendor');
+		Route::get('/pendaftaran', 'backend\Pendaftaran@index')->name('pendaftaran');
 	});
 
 	Route::get('logout', 'Auth\LoginController@logout', function () {

@@ -33,8 +33,8 @@
                                 <tr>
                                     <td>{{$m->menu->nama}}</td>
                                     <td>{{$m->akses_group->nama}}</td>
-                                    <td> <a onclick="editMenu('{{$m->id}}')" class="btn btn-sm waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
-                                        <a onclick="confirmMenu('{{$m->id}}')" class="btn btn-danger btn-sm waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a></td>
+                                    <td> <a href="" onclick="editMenu('{{$m->id}}')" class="btn btn-sm waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                        <a href="" onclick="confirmMenu('{{$m->id}}')" class="btn btn-danger btn-sm waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -64,8 +64,8 @@
                                 <tr>
                                     <td>{{$m->menu->nama}}</td>
                                     <td>{{$m->akses_group->nama}}</td>
-                                    <td> <a onclick="editSubMenu('{{$m->id}}')" class="btn btn-sm waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
-                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a></td>
+                                    <td> <a href="#" onclick="editSubMenu('{{$m->id}}')" class="btn btn-sm waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                        <a href="#" onclick="confirmSubMenu('{{$m->id}}')" class="btn btn-danger btn-sm waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -120,6 +120,34 @@
             swal("Deleted!", "Your imaginary file has been deleted.", "success");
         });
     }
+    function confirmSubMenu(id) {
+        swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+        }, function () {
+                $.ajax({
+                headers: {'X-CSRF-TOKEN': $('#ar-modal-form-sub-menu input[name="_token"]').val()},
+                type: "POST",
+                url: "{{ url('akses-menu/del-submenu') }}"+'/'+id,
+                timeout: 600000,
+                success : function(e) {
+                    setTimeout(function () {
+                        swal("Deleted!", "Your file has been deleted.", "success");
+                        location.reload();
+                    }, 2000);
+                },
+                error : function(e){
+                    showErrorMessage();
+                }
+                });
+            swal("Deleted!", "Your file has been deleted.", "success");
+        });
+    }
 
     function editMenu(id) {
         $('#ar-modal-menu').modal('show');
@@ -135,7 +163,7 @@
             url: url,
             timeout: 600000,
             success : function(e) {
-              $('#ar-modal-menu #akses_group_id').removeAttr("multiple", '');
+              $('#ar-modal-menu #menu_id').removeAttr("multiple", '');
               $('#ar-modal-form #id').val(e.id);
               $('#ar-modal-form #menu_id option[value='+ e.menu_id +']').prop("selected", true).change();
               $('#ar-modal-form #akses_group_id option[value='+ e.akses_group_id +']').prop("selected", true).change();
@@ -159,7 +187,7 @@
             url: url,
             timeout: 600000,
             success : function(e) {
-              $('#ar-modal-form-sub-menu #akses_group_id').removeAttr("multiple", '');
+              $('#ar-modal-form-sub-menu #menu_id').removeAttr("multiple", '');
               $('#ar-modal-form-sub-menu #id').val(e.id);
               $('#ar-modal-form-sub-menu #submenu_id option[value='+ e.menu_id +']').prop("selected", true).change();
               $('#ar-modal-form-sub-menu #akses_group_id option[value='+ e.akses_group_id +']').prop("selected", true).change();
@@ -244,11 +272,12 @@
 
      $('#ar-modal-menu').on('hidden.bs.modal', function(event){
          $(this).find('form')[0].reset();
-          $('#ar-modal-menu #akses_group_id').attr("multiple", '');
+          $('#ar-modal-menu #menu_id').attr("multiple", '');
 
      });
      $('#ar-modal-sub-menu').on('hidden.bs.modal', function(event){
          $(this).find('form')[0].reset();
+        $('#ar-modal-form-sub-menu #menu_id').attr("multiple", '');
      });
 </script>
 <!-- <script src="{{ asset('backend/assets/js/pages/forms/basic-form-elements.js')}}"></script> -->

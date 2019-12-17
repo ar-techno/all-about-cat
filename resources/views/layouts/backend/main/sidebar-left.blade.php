@@ -4,10 +4,7 @@ use App\User;
 use App\akses_group;
 use App\aksesmenu as akses_menu;
 
-$menu = akses_menu::where('akses_group_id',Auth::User()->akses_group_id)->get();
-
-
-// $menu = menu::where([['parent_menu_id',null],['parent_submenu_id',null],['tampil',1]])->orderBy('posisi','asc')->get();
+$menu = akses_menu::join('menus','menus.id','=','aksesmenus.menu_id')->where('aksesmenus.akses_group_id',Auth::User()->akses_group_id)->orderBy('menus.posisi','asc')->get();
 ?>
 
 <aside id="leftsidebar" class="sidebar">
@@ -32,19 +29,18 @@ $menu = akses_menu::where('akses_group_id',Auth::User()->akses_group_id)->get();
                             <a title="instagram" href="#"><i class="zmdi zmdi-instagram"></i></a>                            
                         </div>
                     </li>
-                    <li class="active open"> <a href="dashboard" class="menu"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a>
-                    </li>
                     @foreach($menu as $key)
-                        	<?php
-                            	$mainMenu=menu::whereNotNull('parent_menu_id')->where([['parent_submenu_id',null],['parent_menu_id',$key->menu_id],['tampil',1]])->orderBy('posisi','asc')->get();
-                            	$link  = $key->menu->link != '-' ? $key->menu->link : "javascript:void(0);";
-                            	$togle = count($mainMenu) > 0 ? "menu-toggle" : '';
-                        	?>
+                    	<?php
+                        	$mainMenu=menu::whereNotNull('parent_menu_id')
+                                            ->where([['parent_submenu_id',null],['parent_menu_id',$key->menu_id],['tampil',1]])->orderBy('posisi','asc')->get();
+                        	$link  = $key->menu->link != '-' ? $key->menu->link : "javascript:void(0);";
+                        	$togle = count($mainMenu) > 0 ? "menu-toggle" : '';
+                    	?>
                     <li> <a href="{{$link}}" class="{{$togle}}">
                     		<div class="demo-google-material-icon"><i class="material-icons">{{$key->menu->icon}}</i><span class="icon-name">{{$key->menu->nama}}</span>
                         	</div></a>
                         	<?php
-                        	if (count($mainMenu) > 0) {?>
+                        	if (count($mainMenu) > 0){?>
 		                        <ul class="ml-menu">
 		                        	@foreach($mainMenu as $key)
 		                            	<li><a href="{{$key->link}}">{{$key->nama}}</a></li>

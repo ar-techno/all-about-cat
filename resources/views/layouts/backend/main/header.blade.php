@@ -8,9 +8,6 @@
             </div>
         </li>
         <li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true"><i class="zmdi zmdi-swap"></i></a></li>
-        <li class="hidden-md-down"><a href="events.html" title="Events"><i class="zmdi zmdi-calendar"></i></a></li>
-        <li class="hidden-md-down"><a href="mail-inbox.html" title="Inbox"><i class="zmdi zmdi-email"></i></a></li>
-        <li><a href="contact.html" title="Contact List"><i class="zmdi zmdi-account-box-phone"></i></a></li>
         <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i>
             <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
             </a>
@@ -192,41 +189,11 @@
 <aside id="rightsidebar" class="right-sidebar">
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#setting"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#chat"><i class="zmdi zmdi-comments"></i></a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#activity">Activity</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane slideRight active" id="setting">
             <div class="slim_scroll">
-                <div class="card">
-                    <h6>General Settings</h6>
-                    <ul class="setting-list list-unstyled">
-                        <li>
-                            <div class="checkbox">
-                                <input id="checkbox1" type="checkbox">
-                                <label for="checkbox1">Report Panel Usage</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="checkbox">
-                                <input id="checkbox2" type="checkbox" checked="">
-                                <label for="checkbox2">Email Redirect</label>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="checkbox">
-                                <input id="checkbox3" type="checkbox" checked="">
-                                <label for="checkbox3">Notifications</label>
-                            </div>                        
-                        </li>
-                        <li>
-                            <div class="checkbox">
-                                <input id="checkbox4" type="checkbox" checked="">
-                                <label for="checkbox4">Auto Updates</label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>                
                 <div class="card">
                     <h6>Skins</h6>
                     <ul class="choose-skin list-unstyled">
@@ -313,190 +280,6 @@
                     </div>
                 </div>
             </div>                
-        </div>       
-        <div class="tab-pane right_chat stretchLeft" id="chat">
-            <div class="slim_scroll">
-                <div class="card">
-                    <div class="search">                        
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-addon">
-                                <i class="zmdi zmdi-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <h6>Recent</h6>
-                    <ul class="list-unstyled">
-                        <li class="online">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar4.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="name">Sophia</span>
-                                        <span class="message">There are many variations of passages of Lorem Ipsum available</span>
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>                            
-                        </li>
-                        <li class="online">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar5.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="name">Grayson</span>
-                                        <span class="message">All the Lorem Ipsum generators on the</span>
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>                            
-                        </li>
-                        <li class="offline">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar2.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="name">Isabella</span>
-                                        <span class="message">Contrary to popular belief, Lorem Ipsum</span>
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>                            
-                        </li>
-                        <li class="me">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar1.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="name">John</span>
-                                        <span class="message">It is a long established fact that a reader</span>
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>                            
-                        </li>
-                        <li class="online">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar3.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="name">Alexander</span>
-                                        <span class="message">Richard McClintock, a Latin professor</span>
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>                            
-                        </li>                        
-                    </ul>
-                </div>
-                <div class="card">
-                    <h6>Contacts</h6>
-                    <ul class="list-unstyled">
-                        <li class="offline inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar10.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="offline inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar6.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="offline inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar7.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="offline inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar8.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="offline inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar9.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="online inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar5.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="offline inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar4.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="offline inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar3.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="online inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar2.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="offline inlineblock">
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object " src="{{ asset('backend/assets/images/xs/avatar1.jpg')}}" alt="">
-                                    <div class="media-body">
-                                        <span class="badge badge-outline status"></span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <div class="tab-pane slideLeft" id="activity">
             <div class="slim_scroll">

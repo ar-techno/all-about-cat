@@ -68,15 +68,15 @@ class AksesMenu extends Controller
                 'Hak Akses'=>$request->input('akses_group_id'),
             ];
             $rule=[
-                'Nama Menu'=>'required|string|max:50',
+                'Nama Menu'=>'required|max:50',
                 'Hak Akses'=>'required',
             ];
             $v=Validator::make($input,$rule);
             if(!$v->fails()){
-                foreach ($input['Hak Akses'] as $key) {
+                foreach ($input['Nama Menu'] as $key) {
                     $menu = new akses_menu;
-                    $menu->menu_id = $input['Nama Menu'];
-                    $menu->akses_group_id = $key;
+                    $menu->menu_id = $key;
+                    $menu->akses_group_id = $input['Hak Akses'];
                     $menu->save();
                 }
                 return $menu ? 1 : 0;
@@ -96,15 +96,15 @@ class AksesMenu extends Controller
                 'Hak Akses'=>$request->input('akses_group_id'),
             ];
             $rule=[
-                'Nama Menu'=>'required|string|max:50',
+                'Nama Menu'=>'required|max:50',
                 'Hak Akses'=>'required',
             ];
             $v=Validator::make($input,$rule);
             if(!$v->fails()){
-                foreach ($input['Hak Akses'] as $key) {
+                foreach ($input['Nama Menu'] as $key) {
                     $menu = new aksessubmenu;
-                    $menu->menu_id = $input['Nama Menu'];
-                    $menu->akses_group_id = $key;
+                    $menu->menu_id = $key;
+                    $menu->akses_group_id = $input['Hak Akses'];
                     $menu->save();
                 }
                 return $menu ? 1 : 0;
