@@ -33,8 +33,8 @@
                                 <tr>
                                     <td>{{$m->menu->nama}}</td>
                                     <td>{{$m->akses_group->nama}}</td>
-                                    <td> <a href="" onclick="editMenu('{{$m->id}}')" class="btn btn-sm waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
-                                        <a href="" onclick="confirmMenu('{{$m->id}}')" class="btn btn-danger btn-sm waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a></td>
+                                    <td> <a href="#" onclick="editMenu('{{$m->id}}')" class="btn btn-sm waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                        <a href="#" onclick="confirmMenu('{{$m->id}}')" class="btn btn-danger btn-sm waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -82,16 +82,13 @@
 @push('scriptbottom')
 <script type="text/javascript">
     function modal_add_menu() {
-       $('#ar-modal-menu').modal('show');
+        $('#ar-modal-menu').modal('show');
         $('.modal-backdrop').hide();
-
     }
     function modal_add_sub_menu() {
        $('#ar-modal-sub-menu').modal('show');
         $('.modal-backdrop').hide();    
-
     }
-
     function confirmMenu(id) {
         swal({
         title: "Are you sure?",
@@ -148,7 +145,6 @@
             swal("Deleted!", "Your file has been deleted.", "success");
         });
     }
-
     function editMenu(id) {
         $('#ar-modal-menu').modal('show');
         $('.modal-backdrop').hide();    

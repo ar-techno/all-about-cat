@@ -7,7 +7,7 @@
 $(function() {
     "use strict";    
     initDonutChart();
-    MorrisArea();
+    // MorrisArea();
     Jknob();
 });
 

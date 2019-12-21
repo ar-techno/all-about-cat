@@ -417,6 +417,7 @@
 <script src="{{ asset('backend/assets/bundles/morrisscripts.bundle.js')}}"></script><!-- Morris Plugin Js -->
 <script src="{{ asset('backend/assets/bundles/jvectormap.bundle.js')}}"></script> <!-- JVectorMap Plugin Js -->
 <script src="{{ asset('backend/assets/bundles/knob.bundle.js')}}"></script> <!-- Jquery Knob, Count To, Sparkline Js -->
+<script src="{{ asset('backend/assets/js/pages/index.js')}}"></script>
 
 
 @endpush

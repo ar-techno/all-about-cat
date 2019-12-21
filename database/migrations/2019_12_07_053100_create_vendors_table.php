@@ -15,9 +15,12 @@ class CreateVendorsTable extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('jenisvendors_id')->index()->nullable();
-            $table->integer('users_id')->index()->nullable();
-            $table->integer('layanans_id')->index()->nullable();
+            $table->text('kode')->nullable();
+            $table->integer('jenisvendor_id')->index()->nullable();
+            $table->integer('user_id')->index()->nullable();
+            $table->integer('layanan_id')->index()->nullable();
+            $table->integer('harga_layanan')->nullable();
+            $table->string('catatan_layanan')->nullable();
             $table->string('nama_toko');
             $table->string('logo_toko')->nullable();
             $table->string('hari_kerja')->nullable();
@@ -30,7 +33,14 @@ class CreateVendorsTable extends Migration
             $table->decimal('longitude', 11, 8)->nullable();
             $table->smallInteger('radius')->nullable()->default(20);
             $table->json('detail')->nullable();
-            $table->string('parent_id')->nullable()->after('detail');
+            $table->integer('parent_id')->nullable();
+            $table->boolean('produk_status')->default(0);
+            $table->string('foto_ktp')->nullable();
+            $table->string('foto_pemilik')->nullable();
+            $table->integer('nid')->nullable();
+            $table->string('izin_usaha')->nullable();
+            $table->string('tgl_daftar', 100)->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

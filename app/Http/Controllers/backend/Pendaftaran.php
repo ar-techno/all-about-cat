@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\backend;
 
+use Illuminate\Support\Facades\Validator;
+use App\vendor as new_pendaftar;
+use App\akses_group;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +18,17 @@ class Pendaftaran extends Controller
      */
     public function index()
     {
-        return view('backend/pendaftaran/pendaftaran');
+        $p = new_pendaftar::whereNull('parent_id')->get();
+        foreach ($p as $key) {
+            $d[] = $key;
+            $j = new_pendaftar::where('parent_id',$key->id)->get();
+        }
+        $ag = akses_group::where('alias','!=','ROOT')->get();
+
+        $data['akses_group'] = $ag;
+        $data['pendaftar'] = $d;
+        $data['vendor'] =$j;
+        return view('backend/pendaftaran/pendaftaran',$data);
     }
 
     /**
@@ -57,7 +71,23 @@ class Pendaftaran extends Controller
      */
     public function edit($id)
     {
-        //
+        $d = new_pendaftar::find($id);
+        $data['id']             = $d->id;
+        $data['nama_pemilik']   = $d->User->name;
+        $data['alamat']         = $d->alamat;
+        $data['tgl_daftar']     = $d->tgl_daftar;
+        $data['nama_toko']      = $d->nama_toko;
+        $data['kode_vendor']    = is_null($d->parent_id) ? '' : $d->jenisvendor->kode;
+        $data['jenis_vendor']   = is_null($d->parent_id) ? '' : $d->jenisvendor->nama_vendor;
+        $data['no_telp']        = $d->hp;
+        $data['no_hp']          = $d->telp;
+        $data['email']          = $d->User->email;
+        $data['instagram']      = $d->instagram;
+        $data['alamat_toko']    = $d->alamat;
+        $data['status']         = $d->status;
+        $data['izin_usaha']     = $d->izin_usaha;
+        $data['nid']            = $d->nid;
+        return $data;
     }
 
     /**
@@ -67,9 +97,33 @@ class Pendaftaran extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if($request->isMethod('post')){
+            $input=[
+                'req status'=>$request->input('status'),
+            ];
+            $rule=[
+                'req status'=>'required|max:50',
+            ];
+            $v=Validator::make($input,$rule);
+            if(!$v->fails()){
+                $d = new_pendaftar::find($request->id);
+                $d->status = $input['req status'];
+
+                if (!empty($request->akses_group)) {
+                    $g = User::find($d->user_id);
+                    $g->akses_group_id = $request->akses_group;
+                    $g->save();
+                }
+
+                return $d->save() ? 1 : 0;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 
     /**

@@ -158,16 +158,18 @@ class AksesMenu extends Controller
      */
     public function update(Request $request)
     {
+        $menu_id = $request->menu_id[0];
         $aksesmenu = akses_menu::find($request->id);
-        $aksesmenu->menu_id = $request->menu_id;
+        $aksesmenu->menu_id = $menu_id;
         $aksesmenu->akses_group_id = $request->akses_group_id[0];
         return $aksesmenu->save() ? 1 : 0;
     }
 
     public function updateSubmenu(Request $request)
     {
+        $submenu_id = $request->submenu_id[0];
         $aksesmenu = aksessubmenu::find($request->id);
-        $aksesmenu->menu_id = $request->submenu_id;
+        $aksesmenu->menu_id = $submenu_id;
         $aksesmenu->akses_group_id = $request->akses_group_id[0];
         return $aksesmenu->save() ? 1 : 0;
     }

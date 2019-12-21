@@ -6,6 +6,7 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
+                     {{ csrf_field() }}
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
                             <label for="nama_menu">Gambar / Logo</label>

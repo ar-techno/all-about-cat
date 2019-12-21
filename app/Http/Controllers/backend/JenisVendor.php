@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\jenisvendor as jenis_vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use DataTables;
 class JenisVendor extends Controller
 {
     /**
@@ -35,7 +37,28 @@ class JenisVendor extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->isMethod('post')){
+            $input=[
+                'kd_vendor'=>$request->input('kd_vendor'),
+                'nm_vendor'=>$request->input('nm_vendor'),
+            ];
+            $rule=[
+                'kd_vendor'=>'required|max:50',
+                'nm_vendor'=>'required|max:50',
+            ];
+            $v=Validator::make($input,$rule);
+            if(!$v->fails()){
+                    $s = new jenis_vendor;
+                    $s->kode = $input['kd_vendor'];
+                    $s->nama_vendor = $input['nm_vendor'];
+                    $s->save();
+                return $s ? 1 : 0;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 
     /**
@@ -44,9 +67,18 @@ class JenisVendor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $data = jenis_vendor::whereNull('deleted_at')->get();
+        $DataTables = Datatables()->of($data)
+        ->addColumn('action',function($e)
+        {  
+            return ' <a href="#" onclick="editVendor('.$e->id.')" class="btn btn-sm waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
+                <a href="#" onclick="confirmVendor('.$e->id.')" class="btn btn-danger btn-sm waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a>';
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+        return $DataTables;
     }
 
     /**
@@ -57,7 +89,7 @@ class JenisVendor extends Controller
      */
     public function edit($id)
     {
-        //
+        return jenis_vendor::find($id);
     }
 
     /**
@@ -67,9 +99,12 @@ class JenisVendor extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $v = jenis_vendor::find($request->id);
+        $v->kode        = $request->kd_vendor;
+        $v->nama_vendor = $request->nm_vendor;
+        return $v->save() ? 1 : 0;
     }
 
     /**
@@ -80,6 +115,6 @@ class JenisVendor extends Controller
      */
     public function destroy($id)
     {
-        //
+        return jenis_vendor::find($id)->delete() ? 1 : 0;
     }
 }

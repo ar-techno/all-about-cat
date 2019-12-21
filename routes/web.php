@@ -17,10 +17,18 @@
 
 // Frontend
 	Route::get('/', 'frontend\index@index');
-	Route::get('/home', function () { return view('frontend/beranda');	});
-	Route::get('/about', function () { return view('frontend/about');	});
-	Route::get('/blog', function () { return view('frontend/blog');	});
-	Route::get('/contact', function () { return view('frontend/contact');	});
+	Route::get('/index.html', function () { return view('frontend/beranda');	});
+	Route::get('/aboutus.html', function () { return view('frontend/aboutus');	});
+	Route::get('/blog-standard.html', function () { return view('frontend/blog-standard');	});
+	Route::get('/cart.html', function () { return view('frontend/cart');	});
+	Route::get('/checkout.html', function () { return view('frontend/checkout');	});
+	Route::get('/contact-us.html', function () { return view('frontend/contact-us');	});
+	Route::get('/gallery.html', function () { return view('frontend/gallery');	});
+	Route::get('/shop-detail.html', function () { return view('frontend/shop-detail');	});
+	Route::get('/shop.html', function () { return view('frontend/shop');	});
+	Route::get('/single-blog.html', function () { return view('frontend/single-blog');	});
+	Route::get('/services.html', function () { return view('frontend/services');	});
+	Route::get('/404.html', function () { return view('frontend/404');	});
 
 // Backend
 	Route::get('/logo', function () {
@@ -38,7 +46,8 @@
 	// Route::post('/logout','backend\AuthController@logout');
 	// Route::match(['get','post'],'/login','AuthController@login');
 	// Route::post('/login','AuthController@login');
-	Route::group(['middleware' => ['hakakses']], function () {
+	Route::get('/info-acount', function () { return view('backend/error/info-acount');	});
+	Route::group(['middleware' => ['hakakses','auth']], function () {
 		Route::get('/dashboard', 'backend\Dashboard@index')->name('dashboard');
 
 		Route::get('/menu', 'backend\Menus@index')->name('menu');
@@ -87,7 +96,25 @@
 		});
 
 		Route::get('/jenis-vendor', 'backend\JenisVendor@index')->name('jenis-vendor');
+		Route::prefix('jenis-vendor')->as('jenis-vendor')->group(function(){
+			Route::get('/show','backend\JenisVendor@show');
+			Route::post('/save-vendor','backend\JenisVendor@store');
+			Route::post('/edit-vendor','backend\JenisVendor@update');
+			Route::post('/del-vendor/{id}','backend\JenisVendor@destroy');
+			Route::get('/show-editvendor/{id}','backend\JenisVendor@edit');
+
+
+			Route::get('/show-layanan','backend\LayananVendor@show');
+			Route::post('/save-layanan','backend\LayananVendor@store');
+			Route::post('/edit-layanan','backend\LayananVendor@update');
+			Route::post('/del-layanan/{id}','backend\LayananVendor@destroy');
+			Route::get('/show-editlayanan/{id}','backend\LayananVendor@edit');
+		});
 		Route::get('/pendaftaran', 'backend\Pendaftaran@index')->name('pendaftaran');
+		Route::prefix('data-pendaftar')->as('pendaftaran')->group(function(){
+			Route::get('/show-edit/{id}','backend\Pendaftaran@edit');
+			Route::post('/edit-data','backend\Pendaftaran@update');
+		});
 	});
 
 	Route::get('logout', 'Auth\LoginController@logout', function () {

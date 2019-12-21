@@ -17,7 +17,7 @@ class CreateCathistorysTable extends Migration
             $table->increments('id');
             $table->integer('users_pengirim_id')->index()->nullable();
             $table->integer('users_penerima_id')->index()->nullable();
-            $table->integer('vendors_id')->index()->nullable();
+            $table->integer('vendor_id')->index()->nullable();
             $table->text('isi_chat')->nullable();
             $table->datetime('tgl_chat')->nullable();
             $table->timestamps();

@@ -32,7 +32,16 @@ class hakakses
             if ($user->akses_group_id == $key->akses_group_id) {
                 return $next($request);
             }
+            else
+            {
+                if ($user->akses_group_id == 99) {
+                    return redirect('/info-acount');
+                }
+                
+            }
         }
+
+
         abort('404');
     }
 }

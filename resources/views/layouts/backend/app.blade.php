@@ -59,6 +59,6 @@
 <script src="{{ asset('backend/assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{ asset('backend/assets/js/pages/ui/dialogs.js')}}"></script>
 <script src="{{ asset('backend/assets/bundles/mainscripts.bundle.js')}}"></script>
-<script src="{{ asset('backend/assets/js/pages/index.js')}}"></script>
+
 </body>
 </html>

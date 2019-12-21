@@ -15,6 +15,7 @@ class CreateJenisvendorsTable extends Migration
     {
         Schema::create('jenisvendors', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('kode')->nullable();
             $table->string('nama_vendor');
             $table->timestamps();
             $table->softDeletes();

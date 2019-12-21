@@ -20,7 +20,7 @@ class CreatePromosTable extends Migration
             $table->datetime('tgl_mulai')->nullable();
             $table->datetime('tgl_selesai')->nullable();
             $table->string('title')->nullable();
-            $table->integer('products_id')->index()->nullable();
+            $table->integer('product_id')->index()->nullable();
             $table->integer('promos_parent_id')->index()->nullable();
             $table->float('diskon')->nullable();
             $table->integer('jml_minimum')->nullable();

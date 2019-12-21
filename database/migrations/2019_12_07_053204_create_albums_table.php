@@ -17,8 +17,8 @@ class CreateAlbumsTable extends Migration
             $table->increments('id');
             $table->string('nama_album');
             $table->string('thumbnail');
-            $table->integer('vendors_id')->index()->nullable();
-            $table->string('products_id')->index()->nullable()->after('vendors_id');
+            $table->integer('vendor_id')->index()->nullable();
+            $table->string('product_id')->index()->nullable();
             $table->integer('parent_id')->index()->nullable();
             $table->string('nama_gambar')->nullable();
             $table->string('title')->nullable();

@@ -44,7 +44,13 @@ function showWithTitleMessage() {
 }
 
 function showSuccessMessage() {
-    swal("Success !", "Data Berhasil Disimpan ..", "success");
+    swal({
+            title: "Success",
+            text: "Data Berhasil Disimpan ..",
+            type: "success",
+            timer: 1500,
+            showLoaderOnConfirm: true,
+        });
 }
 
 function showErrorMessage() {
@@ -89,7 +95,7 @@ function showWithCustomIconMessage() {
     swal({
         title: "Sweet!",
         text: "Here's a custom image.",
-        imageUrl: "assets/images/sm/avatar2.jpg"
+        imageUrl: "{{ asset('backend/assets/images/sm/avatar2.jpg')}}"
     });
 }
 
@@ -103,10 +109,10 @@ function showHtmlMessage() {
 
 function showAutoCloseTimerMessage() {
     swal({
-        title: "Auto close alert!",
-        text: "I will close in 2 seconds.",
-        timer: 2000,
-        showConfirmButton: false
+        title: "Success",
+        text: "Data Berhasil Disimpan ..",
+        timer: "success",
+        showConfirmButton: false,
     });
 }
 
