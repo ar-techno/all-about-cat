@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Support\Facades\Validator;
 use App\vendor as new_pendaftar;
 use App\akses_group;
+use App\harikerja;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -79,6 +80,7 @@ class Pendaftaran extends Controller
         $data['nama_toko']      = $d->nama_toko;
         $data['kode_vendor']    = is_null($d->parent_id) ? '' : $d->jenisvendor->kode;
         $data['jenis_vendor']   = is_null($d->parent_id) ? '' : $d->jenisvendor->nama_vendor;
+        $data['akses_group']    = $d->User->akses_group_id;
         $data['no_telp']        = $d->hp;
         $data['no_hp']          = $d->telp;
         $data['email']          = $d->User->email;
@@ -111,11 +113,26 @@ class Pendaftaran extends Controller
                 $d = new_pendaftar::find($request->id);
                 $d->status = $input['req status'];
 
-                if (!empty($request->akses_group)) {
-                    $g = User::find($d->user_id);
-                    $g->akses_group_id = $request->akses_group;
-                    $g->save();
-                }
+                    $cekHK = harikerja::where('vendor_id',$request->id)->first();
+                    if (empty($cekHK)) {
+                        for ($i=1; $i <= 7 ; $i++) { 
+                            $hk = new harikerja;
+                            $hk->vendor_id = $request->id;
+                            $hk->dari = '07:00:00';
+                            $hk->sampai = '17:00:00';
+                            $hk->keterangan = 'Buka';
+                            $hk->hari = $i;
+                            $hk->status = 1;
+                            $hk->save();
+                        }
+                    }
+                    
+                    if (!empty($request->akses_group)) {
+
+                        $g = User::find($d->user_id);
+                        $g->akses_group_id = $request->akses_group;
+                        $g->save();
+                    }
 
                 return $d->save() ? 1 : 0;
             }

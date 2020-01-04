@@ -21,7 +21,7 @@ class CreateMenusTable extends Migration
             $table->boolean('status')->default(1);
             $table->boolean('tampil')->default(1);
             $table->integer('parent_menu_id')->nullable()->index();
-            $table->integer('parent_submenu_id')->nullable()->index();
+            $table->integer('jenisvendor_id')->nullable()->index();
             $table->timestamps();
         });
     }

@@ -76,6 +76,8 @@
             </div>
         </div>
     </div>
+@endsection
+@section('modal')
     @include('backend.akses-menu.ar-form.akses-menu')
     @include('backend.akses-menu.ar-form.akses-sub-menu')
 @endsection

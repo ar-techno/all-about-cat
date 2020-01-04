@@ -23,7 +23,7 @@ class AksesMenu extends Controller
     public function index()
     {
 
-        $menu  = menu::where([['parent_menu_id',null],['parent_submenu_id',null],['tampil',1]])->get();
+        $menu  = menu::where([['parent_menu_id',null],['tampil',1]])->get();
         // $aksessubmenu_detail  = aksessubmenu::select('menu_id');
         $submenu = DB::table('menus as t1')
                 ->join('menus AS t2', 't2.parent_menu_id', '=', 't1.id')

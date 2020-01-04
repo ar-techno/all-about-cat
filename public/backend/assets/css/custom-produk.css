@@ -1,7 +1,8 @@
+/*for IMG Product*/
 .container {
   position: relative;
   width: 100%;
-  max-width: 120px;
+  max-width: 125px;
 }
 
 .container img {
@@ -26,5 +27,183 @@
 }
 
 .container .btn:hover {
+  background-color: #cececea3;
+}
+/*End for IMG Product*/
+
+/*for IMG Profile Store, Groomers, Clinik*/
+
+.Profile_btn {
+    display: none;}
+
+img:hover + .Profile_btn, .Profile_btn:hover {
+    display: inline-block;
+}
+
+.container_profile {
+  position: relative;
+}
+
+.container_profile img {
+  width: 100%;
+  height: auto;
+}
+
+.container_profile .btn {
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.container_profile .btn:hover {
   background-color: transparent;
 }
+/*end for IMG Profile Store, Groomers, Clinik*/
+
+/*Style Image Preview*/
+#image_preview{
+  /*border: 0.5px solid grey;*/
+  padding: 10px;
+}
+
+#image_preview img{
+  width: 100%;
+  padding: 5px;
+}
+/*End For Image Preview*/
+
+.img-wrap {
+    position: relative;
+    display: inline-block;
+    /*border: 1px red solid;*/
+    font-size: 0;
+}
+.img-wrap .close {
+    position: absolute;
+    top: 2px;
+    z-index: 999999999999999999999;
+    background-color: #00000038;
+    padding: 5px 2px 2px;
+    color: #000;
+    border-radius: 10%;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    text-align: center;
+    font-size: 23px;
+    line-height: 10px;
+}
+.img-wrap:hover .close {
+    opacity: 1;
+}
+
+/*style slide produk*/
+/* Position the image container (needed to position the left and right arrows) */
+#ar-modal-img-slider .container {
+  position: relative;
+}
+
+/* Hide the images by default */
+#ar-modal-img-slider .mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+#ar-modal-img-slider .cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+#ar-modal-img-slider .prev{
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding-left: 0px;
+  color: #636c72;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#ar-modal-img-slider .next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding-right: 25px;
+  color: #636c72;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+#ar-modal-img-slider .next {
+  right: 0;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+#ar-modal-img-slider .prev:hover {
+  color: red;
+}
+#ar-modal-img-slider .next:hover {
+  color: red;
+}
+
+/* Number text (1/3 etc) */
+#ar-modal-img-slider .numbertext {
+  color: #d6d6d6;
+  width: fit-content;
+  font-size: 12px;
+  font-style: italic;
+  padding: 0px 0px;
+  position: relative;
+  z-index: 99999999999999999999999999999999999;
+  top: -15px;
+  font-weight: bold;
+  background-color: #000000a8;
+  border-radius: 5px;
+}
+
+/* Container for image text */
+#ar-modal-img-slider .caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+#ar-modal-img-slider .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+#ar-modal-img-slider .column {
+  float: left;
+  padding: 5px;
+}
+
+/* Add a transparency effect for thumnbail images */
+#ar-modal-img-slider .demo {
+  opacity: 0.5;
+}
+
+#ar-modal-img-slider .active,.demo:hover {opacity: 1; border: double;}
+/*end style slide*/

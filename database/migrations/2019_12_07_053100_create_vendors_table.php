@@ -19,7 +19,7 @@ class CreateVendorsTable extends Migration
             $table->integer('jenisvendor_id')->index()->nullable();
             $table->integer('user_id')->index()->nullable();
             $table->integer('layanan_id')->index()->nullable();
-            $table->integer('harga_layanan')->nullable();
+            $table->bigInteger('harga_layanan')->nullable();
             $table->string('catatan_layanan')->nullable();
             $table->string('nama_toko');
             $table->string('logo_toko')->nullable();
@@ -29,8 +29,10 @@ class CreateVendorsTable extends Migration
             $table->string('telp')->nullable();
             $table->string('instagram')->nullable();
             $table->text('alamat')->nullable();
-            $table->decimal('latitude', 10, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
+            $table->text('tentang')->nullable();
+            $table->string('slogan')->nullable();
+            $table->text('latitude')->nullable();
+            $table->text('longitude')->nullable();
             $table->smallInteger('radius')->nullable()->default(20);
             $table->json('detail')->nullable();
             $table->integer('parent_id')->nullable();

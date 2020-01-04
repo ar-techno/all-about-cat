@@ -12,7 +12,6 @@
 @push('scripthead')
 @endpush
 @section('content')
-
     <div class="container-fluid">      
         <div class="row clearfix"> 
             <!-- Spinners -->
@@ -45,6 +44,21 @@
 		                                    <option value="">-- Tidak Ada --</option>
 		                              		@foreach($data as $m)
 		                                    <option value="{{$m->id}}">{{$m->nama}}</option>
+		                              		@endforeach
+		                                </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
+                                    <label for="password_2">Jenis Vendor</label>
+                                </div>
+                                <div class="col-lg-9 col-md-10 col-sm-8">
+                                    <div class="form-group">
+		                              	<select class="form-control show-tick" id="id_vendor" name="id_vendor">
+		                                    <option value="">-- Tidak Ada --</option>
+		                              		@foreach($vendor as $m)
+		                                    <option value="{{$m->id}}">{{$m->nama_vendor}}</option>
 		                              		@endforeach
 		                                </select>
                                     </div>
@@ -487,7 +501,7 @@
                                         	<a onclick="editMenu('{{$m->id}}')" >{{$m->nama}} <i class="zmdi zmdi-edit"></i></a>
                                         </div>
                                         <?php 
-	                                    	$mainMenu=menu::whereNotNull('parent_menu_id')->where('parent_submenu_id',null)->where('parent_menu_id',$m->id)->where('tampil',1)->orderBy('posisi','asc')->get();
+	                                    	$mainMenu=menu::whereNotNull('parent_menu_id')->where('parent_menu_id',$m->id)->where('tampil',1)->orderBy('posisi','asc')->get();
 		                                    	
 		                                    if (count($mainMenu) > 0) {?>
                                         	<ol class="dd-list">
@@ -529,7 +543,6 @@
             <!-- #END# Tags Input --> 
         </div>
     </div>
-
 @endsection
 @push('scriptbottom')
 <script type="text/javascript">
@@ -563,6 +576,9 @@
               $('#ar-modal-form-menu #nama_menu').val(e.nama);
               $('#ar-modal-form-menu #link').val(e.link);
               $('#ar-modal-form-menu #icon_menu').val(e.icon);
+              $('#ar-modal-form-menu #group_menu option[value='+ e.parent_menu_id +']').prop("selected", true).change();
+              $('#ar-modal-form-menu #id_vendor option[value='+ e.jenisvendor_id +']').prop("selected", true).change();
+
             },
             error : function(e){
              showErrorMessage();

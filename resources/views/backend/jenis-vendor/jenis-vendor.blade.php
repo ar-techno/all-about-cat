@@ -58,6 +58,8 @@
             </div>
         </div>
     </div>
+@endsection
+@section('modal')
     @include('backend.jenis-vendor.ar-form.jenis-vendor')
     @include('backend.jenis-vendor.ar-form.jenis-layanan')
 @endsection
@@ -295,6 +297,12 @@
         });
      }
      // Batas
+    $('#ar-modal-jenis-form').on('hidden.bs.modal', function(event){
+         $(this).find('form')[0].reset();
+    });
+    $('#ar-modal-jenis-layanan').on('hidden.bs.modal', function(event){
+         $(this).find('form')[0].reset();
+    });
 </script>
 <script src="{{asset('backend/assets/js/pages/tables/jquery-datatable.js')}}"></script>
 

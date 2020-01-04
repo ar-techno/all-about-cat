@@ -177,7 +177,7 @@
         </li>        
         <li class="float-right">
             <a href="javascript:void(0);" class="fullscreen hidden-sm-down" data-provide="fullscreen" data-close="true"><i class="zmdi zmdi-fullscreen"></i></a>
-            <a href="logout" class="mega-menu" data-close="true"><i class="zmdi zmdi-power"></i></a>
+            <a href="{{ route('logout') }}" class="mega-menu" data-close="true"><i class="zmdi zmdi-power"></i></a>
             <a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a>
         </li>
     </ul>

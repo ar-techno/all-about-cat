@@ -20,25 +20,29 @@ class hakakses
     {
         $user       =  \Auth::user();
         $current    =   explode(".", Route::currentRouteName());
-        $menu       =   menu::where('link', $current[0])->first();
-        if (is_null($menu->parent_menu_id)) {
-            $akses       =   aksesmenu::where('menu_id',$menu->id)->get();
-        }
-        else
-        {
-            $akses       =   aksessubmenu::where('menu_id',$menu->id)->get();
-        }
-        foreach ($akses as $key) {
-            if ($user->akses_group_id == $key->akses_group_id) {
-                return $next($request);
+        $menu       =   menu::where('link', $current[0])->get();
+        $akses      =   array();
+        foreach ($menu as $value) {
+           if (is_null($value->parent_menu_id)) {
+            $akses[] =   aksesmenu::where('menu_id',$value->id)->get();
             }
             else
             {
-                if ($user->akses_group_id == 99) {
-                    return redirect('/info-acount');
-                }
-                
+            $akses[] =   aksessubmenu::where('menu_id',$value->id)->get();
             }
+        }
+        foreach ($akses as $key) {
+            foreach ($key as $value) {
+                if ($user->akses_group_id == $value->akses_group_id) {
+                    return $next($request);
+                }
+                else{
+                    if ($user->akses_group_id == 99) {
+                    return redirect('/info-acount');
+                    }
+                } 
+            }
+           
         }
 
 

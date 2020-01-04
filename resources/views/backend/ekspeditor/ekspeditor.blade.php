@@ -301,6 +301,9 @@
         </div>
     </div>
 @endsection
+@section('modal')
+<!-- MODAL -->
+@endsection
 @push('scriptbottom')
 <script src="{{asset('backend/assets/bundles/knob.bundle.js')}}"></script> <!-- Jquery Knob Plugin Js -->
 <script src="{{asset('backend/assets/js/pages/charts/jquery-knob.js')}}"></script>

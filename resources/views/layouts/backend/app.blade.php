@@ -24,6 +24,12 @@
         <p>Please wait...</p>        
     </div>
 </div>
+<div class="page-loader-ajax" style="display: none;">
+    <div class="loader">
+        <div class="m-t-30"><img class="zmdi-hc-spin" src="{{ asset('backend/assets/images/logo.svg')}}" width="48" height="48" alt="AAC"></div>
+        <p>Please wait...</p>        
+    </div>
+</div>
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
 
@@ -50,7 +56,7 @@
 @yield('content')
 </section>
 <!-- end Content -->
-
+@yield('modal')
 <!-- Jquery Core Js --> 
 <script src="{{ asset('backend/assets/bundles/libscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js)  -->
 <script src="{{ asset('backend/assets/bundles/vendorscripts.bundle.js')}}"></script> <!-- slimscroll, waves Scripts Plugin Js -->

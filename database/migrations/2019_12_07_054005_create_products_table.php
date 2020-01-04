@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kode_produk')->nullable()->after('id');
+            $table->integer('vendor_id')->index()->nullable();
             $table->integer('kategori_id')->index()->nullable();
             $table->integer('produsen_id')->index()->nullable();
             $table->integer('distributor_id')->index()->nullable();
@@ -24,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->text('keterangan')->nullable();
             $table->integer('harga')->nullable();
             $table->integer('stock')->nullable();
-            $table->datetime('tgl_kadaluarsa')->nullable();
+            $table->string('tgl_kadaluarsa')->nullable();
             $table->integer('product_parent_id')->index()->nullable();
             $table->text('gambar')->nullable();
             $table->text('title_gambar')->nullable();

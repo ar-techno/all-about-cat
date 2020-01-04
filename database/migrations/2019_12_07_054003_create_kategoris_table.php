@@ -15,6 +15,7 @@ class CreateKategorisTable extends Migration
     {
         Schema::create('kategoris', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('jenisvendor_id')->index()->nullable();
             $table->string('nama_kategori')->nullable();
             $table->timestamps();
             $table->softDeletes();

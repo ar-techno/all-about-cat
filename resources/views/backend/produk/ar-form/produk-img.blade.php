@@ -5,27 +5,24 @@
                 <h4 class="title" id="largeModalLabel">Upload Gambar Produk</h4>
             </div>
             <div class="modal-body">
-                <form action="/" id="frmFileUpload" class="dropzone" style="background-color: #fff;" method="post" enctype="multipart/form-data">
-                    <input type="text" id="id_produk" name="id_produk" class="form-control" required hidden>
-                       
+                <form  id="ar-form-img" class="form-horizontal" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <input type="hidden" id="id" name="id" class="form-control" required >
+                    <input type="hidden" id="vendor_id" name="vendor_id" class="form-control" value="{{$info->id}}"  >
                     <div class="row clearfix">
-                     
-                        <div class="col-lg-12 col-md-10 col-sm-8">
+                        <div class="col-lg-10 col-md-10 col-sm-8">
                             <div class="form-group">
-                                <div class="dz-message">
-                                <div class="drag-icon-cph"> <i class="material-icons">touch_app</i> </div>
-                                <h3>Drop files here or click to upload.</h3>
-                                <em>(Upload Hanya Berupa Gambar JPG/JPEG/PNG/GIF)</em> </div>
-                            <div class="fallback">
-                                <input name="file[]" type="file" accept="image/x-png,image/gif,image/jpeg" multiple />
-                            </div>
+                                <input id="gambar" name="gambar[]" class="btn btn-default" placeholder="Pilih Gambar Sesuai" type="file" accept="image/x-png,image/gif,image/jpeg" multiple />
                             </div>
                         </div>
                     </div>
+                    <div id="image_preview"></div>
                 </form>
+                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-round waves-effect"><i class="zmdi zmdi-upload zmdi-hc-lg"></i> Upload</button>
+                <button type="button" id="save_gambar" class="btn btn-default btn-round waves-effect"><i class="zmdi zmdi-upload zmdi-hc-lg"></i> Upload</button>
+                <button type="button" id="spinner_id" style="display: none;" class="btn btn-default btn-round waves-effect"><i class="zmdi zmdi zmdi-spinner zmdi-hc-spin"></i> With ...</button>
                 <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CLOSE</button>
             </div>
         </div>

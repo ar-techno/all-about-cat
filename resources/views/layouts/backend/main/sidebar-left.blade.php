@@ -1,9 +1,9 @@
 <?php 
 use App\menu;
 use App\User;
-use App\akses_group;
+use App\vendor;
 use App\aksesmenu as akses_menu;
-
+use Illuminate\Support\Facades\Crypt;
 $menu = akses_menu::join('menus','menus.id','=','aksesmenus.menu_id')->where('aksesmenus.akses_group_id',Auth::User()->akses_group_id)->orderBy('menus.posisi','asc')->get();
 ?>
 
@@ -31,25 +31,54 @@ $menu = akses_menu::join('menus','menus.id','=','aksesmenus.menu_id')->where('ak
                     </li>
                     @foreach($menu as $key)
                     	<?php
-                        	$mainMenu=menu::whereNotNull('parent_menu_id')
-                                            ->where([['parent_submenu_id',null],['parent_menu_id',$key->menu_id],['tampil',1]])->orderBy('posisi','asc')->get();
-                        	$link  = $key->menu->link != '-' ? $key->menu->link : "javascript:void(0);";
-                        	$togle = count($mainMenu) > 0 ? "menu-toggle" : '';
-                    	?>
-                    <li> <a href="{{$link}}" class="{{$togle}}">
-                    		<div class="demo-google-material-icon"><i class="material-icons">{{$key->menu->icon}}</i><span class="icon-name">{{$key->menu->nama}}</span>
-                        	</div></a>
-                        	<?php
-                        	if (count($mainMenu) > 0){?>
-		                        <ul class="ml-menu">
-		                        	@foreach($mainMenu as $key)
-		                            	<li><a href="{{$key->link}}">{{$key->nama}}</a></li>
-		                        	@endforeach
-		                        </ul>
-                        	<?php
-                        	}
-                        	?>
-                    </li>
+                            $mainMenu=menu::whereNotNull('parent_menu_id')->
+                                            where([['parent_menu_id',$key->menu_id],['tampil',1]])->
+                                            orderBy('posisi','asc')->
+                                            get();
+                            $link  = $key->menu->link != '-' ? $key->menu->link : "#";
+                            $togle = count($mainMenu) > 0 ? "menu-toggle" : '';
+                        ?>
+
+                        @if (!is_null($key->jenisvendor_id))
+                           <?php 
+                                $cek = vendor::where([['jenisvendor_id',$key->jenisvendor_id],['user_id',Auth::User()->id]])->select('vendors.status')->first();
+                           ?>
+                           @if ($cek)
+                               @if ($cek->status == 1)
+                                    <li><a href="{{$link}}" class="{{$togle}}">
+                                    		<div class="demo-google-material-icon"><i class="material-icons">{{$key->menu->icon}}</i><span class="icon-name">{{$key->menu->nama}}</span>
+                                        	</div>
+                                        </a>
+                                        	@if (count($mainMenu) > 0)
+                		                        <ul class="ml-menu">
+                		                        	@foreach($mainMenu as $key1)
+                                                        <?php
+                                                            $guest_user_id = base64_encode(base64_encode($key->jenisvendor_id).base64_encode(date('ddmmY')).csrf_field());
+                                                            $url = $key1->link.'/'.$guest_user_id; 
+                                                         ?>
+                		                            	<li><a href="{{url($url)}}">{{$key1->nama}}</a></li>
+                		                        	@endforeach
+                		                        </ul>
+                                        	@endif
+                                    </li>
+                               @endif
+                           @endif
+                        @else
+                           <li> 
+                                <a href="{{url($link)}}" class="{{$togle}}">
+                                    <div class="demo-google-material-icon"><i class="material-icons">{{$key->menu->icon}}</i><span class="icon-name">{{$key->menu->nama}}</span>
+                                    </div>
+                                </a>
+                                    @if (count($mainMenu) > 0)
+                                        <ul class="ml-menu">
+                                            @foreach($mainMenu as $key)
+                                                <li><a href="{{url($key->link)}}">{{$key->nama}}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                            </li> 
+                       
+                        @endif
 					@endforeach
 
                     <li class="header">Adoption</li>

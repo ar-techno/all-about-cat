@@ -1,39 +1,3 @@
-$(function () {
-    $('.js-sweetalert button').on('click', function () {
-        var type = $(this).data('type');
-        if (type === 'basic') {
-            showBasicMessage();
-        }
-        else if (type === 'with-title') {
-            showWithTitleMessage();
-        }
-        else if (type === 'success') {
-            showSuccessMessage();
-        }
-        else if (type === 'confirm') {
-            showConfirmMessage();
-        }
-        else if (type === 'cancel') {
-            showCancelMessage();
-        }
-        else if (type === 'with-custom-icon') {
-            showWithCustomIconMessage();
-        }
-        else if (type === 'html-message') {
-            showHtmlMessage();
-        }
-        else if (type === 'autoclose-timer') {
-            showAutoCloseTimerMessage();
-        }
-        else if (type === 'prompt') {
-            showPromptMessage();
-        }
-        else if (type === 'ajax-loader') {
-            showAjaxLoaderMessage();
-        }
-    });
-});
-
 //These codes takes from http://t4t5.github.io/sweetalert/
 function showBasicMessage() {
     swal("Here's a message!");
@@ -50,6 +14,7 @@ function showSuccessMessage() {
             type: "success",
             timer: 1500,
             showLoaderOnConfirm: true,
+            showConfirmButton:false,
         });
 }
 
@@ -158,4 +123,14 @@ function showAjaxLoaderSuccesMessage() {
     }, function () {
             location.reload();
     });
+}
+
+function ShowAlertDeletedSuccess() {
+     swal({
+          title: 'Deleted!',
+          text: "Your imaginary file has been deleted.",
+          timer: 1000,
+          type: "success",
+          showConfirmButton: false,
+        });
 }

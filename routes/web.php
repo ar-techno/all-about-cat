@@ -70,17 +70,55 @@
 
 		});
 	
-		Route::get('/store', 'backend\StoreInformation@index')->name('store');
-		Route::get('/klinik', 'backend\StoreInformation@index')->name('klinik');
-		Route::get('/groomers', 'backend\StoreInformation@index')->name('groomers');
+		Route::get('/store/{id}', 'backend\StoreInformation@index')->name('store');
+		Route::prefix('data-store')->as('store')->group(function(){
+			Route::get('/show-edit/{id}', 'backend\StoreInformation@show');
+			Route::post('/edit', 'backend\StoreInformation@update');
 
-		Route::get('/produk-toko-kucing', 'backend\Produk@index')->name('produk-toko-kucing');
-		Route::get('/produk-groomers', 'backend\Produk@index')->name('produk-groomers');
-		Route::get('/album-toko-kucing', 'backend\Album@index')->name('album-toko-kucing');
-		Route::get('/album-klinik', 'backend\Album@index')->name('album-klinik');
-		Route::get('/album-groomers', 'backend\Album@index')->name('album-groomers');
-		Route::get('/dashboard-ekspeditor', 'backend\Ekspeditor@index')->name('dashboard-ekspeditor');
-		Route::get('/produk-promo', 'backend\Promo@index')->name('produk-promo');
+			Route::get('/show-hk/{id}', 'backend\HariKerja@show');
+			Route::post('/edit-hari-kerja', 'backend\HariKerja@update');
+			
+			Route::get('/show-layanan/{id}', 'Controller@LayananVendor');
+			Route::post('/edit-layanan', 'Controller@LayananVendorEdit');
+			Route::post('/add-layanan-data', 'Controller@LayananAdd');
+			Route::get('/show-layanan-data', 'Controller@LayananShow');
+			Route::post('/add-logo-vendor', 'Controller@ImageSaveToVendor');
+			
+			Route::get('/getImageToko/{vendor}/{image}', function ($vendor = null,$img = null) {
+				return response()->file(storage_path('images/vendor/'.$vendor.'/img-logo/' . $img));
+			});
+		});
+		Route::get('/klinik/{id}', 'backend\StoreInformation@index')->name('klinik');
+		Route::get('/groomers/{id}', 'backend\StoreInformation@index')->name('groomers');
+
+		Route::get('/kategori-produk/', 'backend\kategoriProduct@index')->name('kategori-produk');
+		Route::prefix('data-kategori')->as('kategori-produk')->group(function(){
+			Route::post('/save-kategori', 'backend\kategoriProduct@store');
+			Route::post('/edit-kategori', 'backend\kategoriProduct@update');
+			Route::post('/del-kategori/{id}', 'backend\kategoriProduct@destroy');
+		});
+
+		Route::get('/produk-toko-kucing/{id}', 'backend\Produk@index')->name('produk-toko-kucing');
+		Route::prefix('data-produk')->as('produk-toko-kucing')->group(function(){
+			Route::post('/save-produk', 'backend\Produk@store');
+			Route::post('/edit-produk', 'backend\Produk@update');
+			Route::post('/del-produk/{id}', 'backend\Produk@destroy');
+
+			Route::post('/save-gambar-produk', 'Controller@ImageSaveToProduk');
+			Route::get('/list-gambar/{id}', 'Controller@ImageListProduk');
+			Route::post('/del-images/{id}', 'Controller@DeletedImagesProduk');
+			Route::post('/edit-title-gambar', 'Controller@EditImagesProduk');
+			Route::get('/produk-gambar/{vendorId}/{produkId}/{image}', function ($vendorId = null,$produkId = null,$img = null) {
+				return response()->file(storage_path('images/vendor/'.$vendorId.'/img-produk/' .$produkId.'/'.$img));
+			});
+		});
+
+		Route::get('/produk-groomers/{id}', 'backend\Produk@index')->name('produk-groomers');
+		Route::get('/album-toko-kucing/{id}', 'backend\Album@index')->name('album-toko-kucing');
+		Route::get('/album-klinik/{id}', 'backend\Album@index')->name('album-klinik');
+		Route::get('/album-groomers/{id}', 'backend\Album@index')->name('album-groomers');
+		Route::get('/dashboard-ekspeditor/{id}', 'backend\Ekspeditor@index')->name('dashboard-ekspeditor');
+		Route::get('/produk-promo/{id}', 'backend\Promo@index')->name('produk-promo');
 
 		Route::get('/akses-menu', 'backend\AksesMenu@index')->name('akses-menu');
 		Route::prefix('akses-menu')->as('akses-menu')->group(function(){

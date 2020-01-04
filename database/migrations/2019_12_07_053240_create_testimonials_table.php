@@ -15,10 +15,10 @@ class CreateTestimonialsTable extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index()->nullable();
+            $table->integer('vendor_id')->nullable()->index();
+            $table->integer('customer_id')->index()->nullable();
             $table->integer('ratting')->nullable();
-            $table->integer('isi_ulasan')->nullable();
-            $table->datetime('tgl_ulasan')->nullable();
+            $table->text('isi_ulasan')->nullable();
             $table->integer('membantu')->nullable();
             $table->integer('tidak')->nullable();
             $table->timestamps();

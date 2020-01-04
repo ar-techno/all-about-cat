@@ -229,7 +229,9 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
+@endsection
+@section('modal')
 	@include('backend.produk.ar-form.produk')
     @include('backend.produk.ar-form.produk-img')
 @endsection

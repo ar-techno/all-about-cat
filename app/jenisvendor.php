@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class jenisvendor extends Model
 {
     use SoftDeletes;
+    public function menu()
+    {
+        return $this->belongsTo('App\menu');
+    }
+
 }

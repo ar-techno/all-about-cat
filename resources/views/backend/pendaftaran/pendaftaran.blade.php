@@ -60,7 +60,9 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
+@endsection
+@section('modal')
 	@include('backend.pendaftaran.ar-form.pendaftaran')
 	@include('backend.pendaftaran.ar-form.vendor-toko-kucing')
 	@include('backend.pendaftaran.ar-form.vendor-klinik-dokter')
@@ -107,6 +109,7 @@ function showPendaftar(id_vendor) {
               $('#form-edit- #nama_pemilik').val(e.nama_pemilik);
               $('#form-edit- #tgl_daftar').val(e.tgl_daftar);
               $('#form-edit- #alamat').val(e.alamat);
+              $('#form-edit- #akses_group option[value='+ e.akses_group +']').prop("selected", true).change();
               document.getElementById("foto_ktp").src = "http://1.bp.blogspot.com/-cKbR2Cw8BLU/VrLaPvhz9pI/AAAAAAAAAcE/Pe9LhaTN1sY/s1600/Scan%2BKTP.JPG";
               document.getElementById("foto_pemilik").src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQSNKQX4HegbjrTCltM_Z_ziPjL_6ADBE_JGARetZ55NhqBBzsuA&s";
               $('#form-edit-'+e.kode_vendor+' #id').val(e.id);

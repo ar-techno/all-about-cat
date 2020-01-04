@@ -20,4 +20,8 @@ class akses_group extends Model
     {
         return $this->hasMany('App\Aksessubmenu');
     }
+    public function vendor()
+    {
+        return $this->belongsTo('App\Aksessubmenu');
+    }
 }

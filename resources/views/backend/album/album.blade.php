@@ -41,8 +41,9 @@
                 </div>
             </div>
         </div>
-    </div>
-
+</div>
+@endsection
+@section('modal')
 	@include('backend.identitas-perusahaan.ar-form.identitas')
 	@include('backend.identitas-perusahaan.ar-form.identitas-img')
 @endsection

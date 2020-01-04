@@ -14,5 +14,9 @@ class menu extends Model
     {
     	return $this->hasMany('App\aksesmenu');
     }
+    public function jenisvendor()
+    {
+    	return $this->hasMany('App\jenisvendor');
+    }
     
 }

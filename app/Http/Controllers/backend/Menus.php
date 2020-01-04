@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 use App\menu;
+use App\jenisvendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,10 @@ class Menus extends Controller
      */
     public function index()
     {
-        $menu = menu::where('parent_menu_id',null)->where([['parent_submenu_id',null],['tampil',1]])->orderBy('posisi','asc')->get();
+        $menu = menu::where('parent_menu_id',null)->where('tampil',1)->orderBy('posisi','asc')->get();
+        $vendor = jenisvendor::all();
         $data['data'] = $menu;
+        $data['vendor'] = $vendor;
         return view('backend/menu/menu',$data);
     }
 
@@ -43,6 +46,7 @@ class Menus extends Controller
         $menu->link = $request->link;
         $menu->icon = $request->icon_menu;
         $menu->status = $request->tampil;
+        $menu->jenisvendor_id = $request->id_vendor;
         // $menu->tampil = $request->name;
         if (!empty($request->group_menu)) {
             $menu->parent_menu_id = $request->group_menu;
@@ -63,7 +67,11 @@ class Menus extends Controller
      */
     public function show($id)
     {
-        return menu::where('id',$id)->first();
+
+        return menu::leftjoin('jenisvendors','jenisvendors.id','menus.jenisvendor_id')
+        ->where('menus.id',$id)
+        ->select('*','menus.id as id','jenisvendors.id as jenisvendor_id')
+        ->first();
     }
 
     /**
@@ -91,6 +99,8 @@ class Menus extends Controller
         $menu->link = $request->link;
         $menu->icon = $request->icon_menu;
         $menu->tampil = $request->tampil;
+        $menu->jenisvendor_id = $request->id_vendor;
+
         // $menu->tampil = $request->name;
         if (!empty($request->group_menu)) {
             $menu->parent_menu_id = $request->group_menu;
