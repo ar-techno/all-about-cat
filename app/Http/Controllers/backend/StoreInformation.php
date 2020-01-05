@@ -9,6 +9,7 @@ use App\User;
 use App\testimonial;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class StoreInformation extends Controller
 {
@@ -20,7 +21,8 @@ class StoreInformation extends Controller
     public function index($id='')
     {   
 
-        $id      = base64_decode(base64_decode($id).base64_decode(date('ddmmY')).csrf_field());
+        $to64    = Crypt::decryptString($id);
+        $id      = base64_decode(base64_decode($to64).base64_decode(date('ddmmY')).csrf_field());
         $d       = vendor::where([['jenisvendor_id',$id],['user_id',Auth::user()->id]])->first();
         $waktu   = harikerja::where('vendor_id',$d->id)->get();
         $testimo = testimonial::where('vendor_id',$d->id)->paginate(10);
@@ -73,6 +75,9 @@ class StoreInformation extends Controller
         $data['no_hp'] = $v->hp;
         $data['email'] = $v->User->email;
         $data['instagram'] = $v->instagram;
+        $data['facebook'] = $v->facebook;
+        $data['line'] = $v->line;
+        $data['twitter'] = $v->twitter;
         $data['slogan'] = $v->slogan;
         $data['tentang_toko'] = $v->tentang;
         $data['alamat_toko'] = $v->alamat;
@@ -109,6 +114,9 @@ class StoreInformation extends Controller
             $v->hp = $request->no_hp;
 
             $v->instagram = $request->instagram;
+            $v->facebook = $request->facebook;
+            $v->line = $request->line;
+            $v->twitter = $request->twitter;
             $v->slogan = $request->slogan;
             $v->tentang = $request->tentang_toko;
             $v->alamat = $request->alamat_toko;

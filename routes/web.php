@@ -103,6 +103,7 @@
 			Route::post('/save-produk', 'backend\Produk@store');
 			Route::post('/edit-produk', 'backend\Produk@update');
 			Route::post('/del-produk/{id}', 'backend\Produk@destroy');
+			Route::get('/ambil-produk/{id}', 'backend\Produk@show');
 
 			Route::post('/save-gambar-produk', 'Controller@ImageSaveToProduk');
 			Route::get('/list-gambar/{id}', 'Controller@ImageListProduk');

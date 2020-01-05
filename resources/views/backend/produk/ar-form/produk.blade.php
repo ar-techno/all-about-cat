@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-lg-9 col-md-10 col-sm-8">
                             <div class="form-group">
-                                <input type="text" id="id" name="id" class="form-control"  hidden>
+                                <input type="hidden" id="id" name="id" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-lg-9 col-md-10 col-sm-8">
                             <div class="form-group">
-                                <input type="text" id="vendor_id" name="vendor_id" class="form-control" value="{{$info->id}}"  hidden>
+                                <input type="hidden" id="vendor_id" name="vendor_id" class="form-control" value="{{$info->id}}">
                                 <input type="text" id="nama_toko" name="nama_toko" class="form-control" value="{{$info->nama_toko}}"  disabled>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                         <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
                             <label for="kategori_id">Kategori Produk</label>
                         </div>
-                        <div class="col-lg-4 col-md-10 col-sm-8">
+                        <div class="col-lg-6 col-md-10 col-sm-8">
                             <div class="form-group">
                                 <select class="form-control show-tick" id="kategori_id" name="kategori_id" >
                                     <option value="">-- Tidak Ada --</option>
@@ -85,14 +85,14 @@
                     </div>
                     <div class="row clearfix">                           
                         <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
-                            <label for="nama_menu">Tanggal Kadaluarsa</label>
+                            <label for="tgl_kdl">Tanggal Kadaluarsa</label>
                         </div>
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="zmdi zmdi-calendar"></i>
                                 </span>
-                                <input type="text" id="tgl_berdiri" name="tgl_berdiri" class="form-control datetimepicker" data-weekends="false" autocomplete="off" placeholder="Please choose date & time...">
+                                <input type="text" id="tgl_kdl" name="tgl_kdl" class="form-control datetimepicker" data-weekends="false" autocomplete="off" placeholder="Please choose date & time...">
                             </div>
                         </div>
                     </div>

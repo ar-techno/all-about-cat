@@ -50,15 +50,24 @@ use App\layanan;
                                <div class="row clearfix social-widget">                   
                                     <div class="col-lg-6 col-md-4">
                                         <div class="content">
-                                                <small class="text-muted">Email address: </small>
+                                                <small class="text-muted"><i class="zmdi zmdi-email"></i> Email address: </small>
                                                 <p>{{$data->User->email}}</p>
                                                 <hr>
-                                                <small class="text-muted">Phone: </small>
+                                                <small class="text-muted"><i class="zmdi zmdi-phone-in-talk"></i> Phone: </small>
                                                 <p>~ {{$data->hp}}</p>
                                                 <p>~ {{$data->telp}}</p>
                                                 <hr>
+                                                <small class="text-muted"> <a title="line" href="#" class=" waves-effect waves-block"><i class="zmdi zmdi-line"></i> <span style="color: #000;"><i class="zmdi zmdi-phone-msg"></i> Line :</span> </a> </small>
+                                                <p>~ @ {{$data->line}}</p>
+                                                <hr>
                                                 <small class="text-muted"> <a title="instagram" href="#" class=" waves-effect waves-block"><i class="zmdi zmdi-instagram"></i> <span style="color: #000;">Instagram</span> </a> </small>
                                                 <p>~ @ {{$data->instagram}}</p>
+                                                <hr>
+                                                <small class="text-muted"> <a title="line" href="#" class=" waves-effect waves-block"><i class="zmdi zmdi-twitter"></i> <span style="color: #000;">Twitter</span> </a> </small>
+                                                <p>~ @ {{$data->twitter}}</p>
+                                                <hr>
+                                                <small class="text-muted"> <a title="facebook" href="#" class=" waves-effect waves-block"><i class="zmdi zmdi-facebook"></i> <span style="color: #000;">Facebook</span> </a> </small>
+                                                <p>~ {{$data->facebook}}</p>
                                                 <hr>
                                         </div>
                                     </div>
@@ -265,6 +274,9 @@ use App\layanan;
               $('#ar-modal-edit #no_hp').val(e.no_hp);
               $('#ar-modal-edit #email').val(e.email);
               $('#ar-modal-edit #instagram').val(e.instagram);
+              $('#ar-modal-edit #facebook').val(e.facebook);
+              $('#ar-modal-edit #line').val(e.line);
+              $('#ar-modal-edit #twitter').val(e.twitter);
               $('#ar-modal-edit #slogan').val(e.slogan);
               $('#ar-modal-edit #tentang_toko').val(e.tentang_toko);
               $('#ar-modal-edit #alamat_toko').val(e.alamat_toko);

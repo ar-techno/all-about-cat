@@ -7,6 +7,7 @@ use App\vendor;
 use App\product;
 use Auth;
 use File;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,6 +17,18 @@ use Illuminate\Http\Request;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function ValidasiData($input,$rule)
+    {
+        $messages = [
+                      'required' => 'Data :attribute Tidak Boleh Kosong',
+                      'string'    => 'Data :attribute Harus Dalam Bentuk Text',
+                      'file'    => 'Data :attribute Harus Dalam Bentuk File',
+                      'mimes' => 'Supported file format for :attribute are :mimes',
+                      'max'      => 'The :attribute must have a maximum length of :max',
+                    ];
+        return Validator::make($input,$rule,$messages);
+    }
 
     public function LayananShow($id='')
     {

@@ -79,6 +79,36 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
+                            <label for="facebook">Facebook</label>
+                        </div>
+                        <div class="col-lg-9 col-md-10 col-sm-8">
+                            <div class="form-group">
+                                <input type="text" id="facebook" name="facebook" class="form-control" placeholder="ID Facebook Ex : {{$data->nama_toko}}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
+                            <label for="line">Twitter</label>
+                        </div>
+                        <div class="col-lg-9 col-md-10 col-sm-8">
+                            <div class="form-group">
+                                <input type="text" id="twitter" name="twitter" class="form-control" placeholder="Id Line" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
+                            <label for="line">Line</label>
+                        </div>
+                        <div class="col-lg-9 col-md-10 col-sm-8">
+                            <div class="form-group">
+                                <input type="text" id="line" name="line" class="form-control" placeholder="Id Line" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
                             <label for="slogan">Slogan</label>
                         </div>
                         <div class="col-lg-9 col-md-10 col-sm-8">

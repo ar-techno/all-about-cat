@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Crypt;
 
 	function getHari($tgl){
 		$nama_hari = array("","senin", "selasa", "rabu", "kamis", "jumat", "sabtu","minggu");
@@ -38,5 +39,10 @@
 	{
 		$harga = $rp;
 		return 'Rp. '.number_format($harga, 0, ".", ".");
+	}
+
+	function genereteLink($id='')
+	{
+		return Crypt::encryptString(base64_encode(base64_encode($id).base64_encode(date('ddmmY')).csrf_field()));
 	}
 ?>

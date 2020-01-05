@@ -61,8 +61,8 @@
                                     </td>
                                     <td class="" style="display: table-cell;">
                                         <a href="#" onclick="modal_img_detail('{{$d->id}}','{{$info->id}}')" class="btn btn-xs waves-effect waves-float waves-green"><i class="zmdi zmdi-collection-image"></i></a>
-                                        <a href="#" onclick="" class="btn btn-xs waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
-                                        <a href="#" class="btn btn-xs waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a>
+                                        <a href="#" onclick="getShowProduk('{{$d->id}}')" class="btn btn-xs waves-effect waves-float waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                        <a href="#" onclick="delProduk('{{$d->id}}')" class="btn btn-xs waves-effect waves-float waves-red"><i class="zmdi zmdi-delete"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -113,6 +113,33 @@
         $('.modal-backdrop').hide();    
     }
     
+    function getShowProduk(idProduk) {
+        $('#ar-modal-produk').modal('show');
+        $('.modal-backdrop').hide();
+            $.ajax({
+                processData: true,
+                contentType: false,
+                cache: false,
+                type: "get",
+                enctype: 'multipart/form-data',
+                url: "{{ url('data-produk/ambil-produk') }}"+'/'+idProduk,
+                timeout: 600000,
+                success : function(e) {
+                    $('#ar-modal-produk #id').val(e.id)
+                    $('#ar-modal-produk #vendor_id').val(e.vendor_id)
+                    $('#ar-modal-produk #nama_produk').val(e.nama_product)
+                    $('#ar-modal-produk #keterangan').val(e.keterangan)
+                    $('#ar-modal-produk #stok').val(e.stock)
+                    $('#ar-modal-produk #harga').val(e.harga)
+                    $('#ar-modal-produk #tgl_kdl').val(e.tgl_kadaluarsa)
+                    $('#ar-modal-produk #kategori_id option[value='+ e.kategori_id +']').prop("selected", true).change();
+                },
+                error : function(e){
+                 showErrorMessage();
+                }
+            });
+    }
+
     function modal_img_show(id) {
         $('#ar-modal-img').modal('show');
         $('.modal-backdrop').hide();
@@ -250,6 +277,36 @@
             });
     }
 
+    function delProduk(idProduk) {
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this imaginary file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+            }, function () {
+                    $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('#ar-modal-img-detail input[name="_token"]').val()},
+                    type: "POST",
+                    url: "{{ url('data-produk/del-produk') }}"+'/'+idProduk,
+                    timeout: 3000,
+                    success : function(e) {
+                        if (e = 1) {
+                            ShowAlertDeletedWithReload();
+                        }
+                        else{
+                            swal("Oops!", "Gagal Menghapus Data Produk.", "warning");
+                        }
+                    },
+                    error : function(e){
+                        showErrorMessage();
+                    }
+                    });
+            });
+    }
+
     var slideIndex = 0;
 
     function plusSlides(n) {
@@ -310,7 +367,7 @@
                     }
                     else
                     {
-                        showErrorMessage();
+                        showErrorMessageWithTitle(e);
                     }                  
                 },
                 error : function(e){

@@ -22,6 +22,10 @@ function showErrorMessage() {
     swal("Ooops !", "Gagal Menyimpan Data", "error");
 }
 
+function showErrorMessageWithTitle($value='') {
+    swal("Ooops !", $value, "error");
+}
+
 function showConfirmMessage() {
     swal({
         title: "Are you sure?",
@@ -117,6 +121,18 @@ function showAjaxLoaderSuccesMessage() {
     swal({
         title: "Success",
         text: "Data Berhasil Disimpan ..",
+        type: "success",
+        timer: 1500,
+        showLoaderOnConfirm: true,
+    }, function () {
+            location.reload();
+    });
+}
+
+function ShowAlertDeletedWithReload() {
+    swal({
+        title: 'Deleted!',
+          text: "Your imaginary file has been deleted.",
         type: "success",
         timer: 1500,
         showLoaderOnConfirm: true,

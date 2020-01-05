@@ -28,6 +28,9 @@ class CreateVendorsTable extends Migration
             $table->string('hp')->nullable();
             $table->string('telp')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('line')->nullable();
+            $table->string('twitter')->nullable();
             $table->text('alamat')->nullable();
             $table->text('tentang')->nullable();
             $table->string('slogan')->nullable();

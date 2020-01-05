@@ -53,8 +53,7 @@ $menu = akses_menu::join('menus','menus.id','=','aksesmenus.menu_id')->where('ak
                 		                        <ul class="ml-menu">
                 		                        	@foreach($mainMenu as $key1)
                                                         <?php
-                                                            $guest_user_id = base64_encode(base64_encode($key->jenisvendor_id).base64_encode(date('ddmmY')).csrf_field());
-                                                            $url = $key1->link.'/'.$guest_user_id; 
+                                                            $url = $key1->link.'/'.genereteLink($key->jenisvendor_id); 
                                                          ?>
                 		                            	<li><a href="{{url($url)}}">{{$key1->nama}}</a></li>
                 		                        	@endforeach
