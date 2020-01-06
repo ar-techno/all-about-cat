@@ -185,8 +185,6 @@
     }
 
     function modal_img_detail(idProduk,vendorId) {
-        $('#ar-modal-img-detail').modal('show');
-        $('.modal-backdrop').hide();
         $.ajax({
             processData: true,
             contentType: false,
@@ -194,6 +192,11 @@
             type: "GET",
             url: "{{ url('data-produk/list-gambar') }}"+'/'+idProduk,
             success : function(e) {
+                if (e == null || e == '') {showWithTitleMessage();}
+                else{
+                    $('#ar-modal-img-detail').modal('show');
+                    $('.modal-backdrop').hide();
+                }
                 $('#imagesList').after('<div id="image_show" class="list-unstyled row clearfix"></div>');
                 for(var i=0;i<e.length;i++)
                 {
@@ -229,7 +232,7 @@
                 $('#imagesShowList').after('<div id="image_show1" class="list-unstyled row clearfix"></div>');
                 for(var i=0;i<e.length;i++){
                   var link = "{{url('data-produk/produk-gambar')}}"+'/'+vendorId+'/'+product_parent_id+'/'+e[i].gambar;
-                  $('#image_show1').append('<div class="mySlides" style="display:none;"><div class="numbertext">Gambar Ke '+(i+1)+'/'+e.length+'</div><img src="'+link+'" style="width:100%"></div>');
+                  $('#image_show1').append('<div class="mySlides" style="display:none;    min-width: -webkit-fill-available;"><div class="numbertext">Gambar Ke '+(i+1)+'/'+e.length+'</div><img src="'+link+'" style="width:100%"></div>');
                 }
 
                 $('.caption-container').after('<div id="image_row" class="list-unstyled row clearfix"></div>');
@@ -414,7 +417,7 @@
 
     $('#ar-modal-img-detail').on('hidden.bs.modal', function(event){
       $('#ar-modal-img-detail #image_show').remove();
-      $('#ar-modal-img-detail #title_images').html('');
+      $('#ar-modal-img-detail #title_images').html("");
     });
     $('#ar-modal-img-slider').on('hidden.bs.modal', function(event){
       $('#ar-modal-img-slider #image_show1').remove();

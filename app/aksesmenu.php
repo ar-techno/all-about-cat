@@ -15,4 +15,6 @@ class aksesmenu extends Model
     {
         return $this->belongsTo('App\akses_group');
     }
+
+
 }

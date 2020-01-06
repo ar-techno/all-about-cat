@@ -34,6 +34,7 @@ class hakakses
         foreach ($akses as $key) {
             foreach ($key as $value) {
                 if ($user->akses_group_id == $value->akses_group_id) {
+
                     return $next($request);
                 }
                 else{
@@ -44,8 +45,6 @@ class hakakses
             }
            
         }
-
-
         abort('404');
     }
 }

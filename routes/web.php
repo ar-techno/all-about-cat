@@ -11,10 +11,6 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('frontend/beranda');
-// });
-
 // Frontend
 	Route::get('/', 'frontend\index@index');
 	Route::get('/index.html', function () { return view('frontend/beranda');	});
@@ -41,6 +37,7 @@
 	});
 
 	Auth::routes();
+	Route::get('/log-in', function () { return view('auth/login');	});
 
 	// Route::post('/login', 'backend\AuthController@login');
 	// Route::post('/logout','backend\AuthController@logout');
@@ -82,7 +79,7 @@
 			Route::post('/edit-layanan', 'Controller@LayananVendorEdit');
 			Route::post('/add-layanan-data', 'Controller@LayananAdd');
 			Route::get('/show-layanan-data', 'Controller@LayananShow');
-			Route::post('/add-logo-vendor', 'Controller@ImageSaveToVendor');
+			Route::post('/add-logo-vendor', 'backend\ImageManager@ImageSaveToVendor');
 			
 			Route::get('/getImageToko/{vendor}/{image}', function ($vendor = null,$img = null) {
 				return response()->file(storage_path('images/vendor/'.$vendor.'/img-logo/' . $img));
@@ -105,10 +102,10 @@
 			Route::post('/del-produk/{id}', 'backend\Produk@destroy');
 			Route::get('/ambil-produk/{id}', 'backend\Produk@show');
 
-			Route::post('/save-gambar-produk', 'Controller@ImageSaveToProduk');
-			Route::get('/list-gambar/{id}', 'Controller@ImageListProduk');
-			Route::post('/del-images/{id}', 'Controller@DeletedImagesProduk');
-			Route::post('/edit-title-gambar', 'Controller@EditImagesProduk');
+			Route::post('/save-gambar-produk', 'backend\ImageManager@ImageSaveToProduk');
+			Route::get('/list-gambar/{id}', 'backend\ImageManager@ImageListProduk');
+			Route::post('/del-images/{id}', 'backend\ImageManager@DeletedImagesProduk');
+			Route::post('/edit-title-gambar', 'backend\ImageManager@EditImagesProduk');
 			Route::get('/produk-gambar/{vendorId}/{produkId}/{image}', function ($vendorId = null,$produkId = null,$img = null) {
 				return response()->file(storage_path('images/vendor/'.$vendorId.'/img-produk/' .$produkId.'/'.$img));
 			});

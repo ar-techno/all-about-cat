@@ -4,7 +4,7 @@ function showBasicMessage() {
 }
 
 function showWithTitleMessage() {
-    swal("Here's a message!", "It's pretty, isn't it?");
+    swal("Gambar Produk Tidak Tersedia!", "Silhakan Upload Gambar Produk Terlebih Dahulu..");
 }
 
 function showSuccessMessage() {

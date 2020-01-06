@@ -16,7 +16,14 @@ class menu extends Model
     }
     public function jenisvendor()
     {
-    	return $this->hasMany('App\jenisvendor');
+    	return $this->belongsTo('App\jenisvendor');
     }
-    
+    public function JoinToAksesMenu()
+    {
+        return $this->hasOne('App\aksesmenu','menu_id','id')->where('aksesmenus.akses_group_id',\Auth::User()->akses_group_id);
+    }
+    public function GetSubMenu($id)
+    {
+        return $this->where('parent_menu_id',$id)->where('tampil',1)->get();
+    }
 }
