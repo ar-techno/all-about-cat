@@ -16,13 +16,14 @@ class CreateAlbumsTable extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_album');
-            $table->string('thumbnail');
+            $table->integer('kategori_id')->index()->nullable();
             $table->integer('vendor_id')->index()->nullable();
-            $table->string('product_id')->index()->nullable();
+            $table->text('url_thumbnail')->nullable();
             $table->integer('parent_id')->index()->nullable();
             $table->string('nama_gambar')->nullable();
+            $table->text('url_gambar')->nullable();
             $table->string('title')->nullable();
-            $table->text('detail')->nullable();
+            $table->text('keterangan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

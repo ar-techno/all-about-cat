@@ -66,7 +66,9 @@
 			});
 
 		});
-	
+
+		Route::get('/klinik/{id}', 'backend\StoreInformation@index')->name('klinik');
+		Route::get('/groomers/{id}', 'backend\StoreInformation@index')->name('groomers');
 		Route::get('/store/{id}', 'backend\StoreInformation@index')->name('store');
 		Route::prefix('data-store')->as('store')->group(function(){
 			Route::get('/show-edit/{id}', 'backend\StoreInformation@show');
@@ -85,8 +87,7 @@
 				return response()->file(storage_path('images/vendor/'.$vendor.'/img-logo/' . $img));
 			});
 		});
-		Route::get('/klinik/{id}', 'backend\StoreInformation@index')->name('klinik');
-		Route::get('/groomers/{id}', 'backend\StoreInformation@index')->name('groomers');
+
 
 		Route::get('/kategori-produk/', 'backend\kategoriProduct@index')->name('kategori-produk');
 		Route::prefix('data-kategori')->as('kategori-produk')->group(function(){
@@ -95,8 +96,8 @@
 			Route::post('/del-kategori/{id}', 'backend\kategoriProduct@destroy');
 		});
 
-		Route::get('/produk-toko-kucing/{id}', 'backend\Produk@index')->name('produk-toko-kucing');
-		Route::prefix('data-produk')->as('produk-toko-kucing')->group(function(){
+		Route::get('/produk/{id}', 'backend\Produk@index')->name('produk');
+		Route::prefix('data-produk')->as('produk')->group(function(){
 			Route::post('/save-produk', 'backend\Produk@store');
 			Route::post('/edit-produk', 'backend\Produk@update');
 			Route::post('/del-produk/{id}', 'backend\Produk@destroy');
@@ -111,10 +112,17 @@
 			});
 		});
 
-		Route::get('/produk-groomers/{id}', 'backend\Produk@index')->name('produk-groomers');
-		Route::get('/album-toko-kucing/{id}', 'backend\Album@index')->name('album-toko-kucing');
-		Route::get('/album-klinik/{id}', 'backend\Album@index')->name('album-klinik');
-		Route::get('/album-groomers/{id}', 'backend\Album@index')->name('album-groomers');
+		Route::get('/album/{id}', 'backend\Album@index')->name('album');
+		Route::prefix('data-album')->as('album')->group(function(){
+			Route::post('/save-album', 'backend\Album@create');
+			Route::post('/save-images', 'backend\Album@saveImages');
+			Route::get('/list-gambar/{id}', 'backend\Album@ImageList');
+			Route::get('/all-list-gambar/{id}', 'backend\Album@allListGambar');
+			Route::get('/show-album/{vendorId}/{image}', function ($vendorId = null,$img = null) {
+				return response()->file(storage_path('images/vendor/'.$vendorId.'/img-album/'.$img));
+			});
+		});
+		
 		Route::get('/dashboard-ekspeditor/{id}', 'backend\Ekspeditor@index')->name('dashboard-ekspeditor');
 		Route::get('/produk-promo/{id}', 'backend\Promo@index')->name('produk-promo');
 

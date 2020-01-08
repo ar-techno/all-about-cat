@@ -1558,7 +1558,10 @@
 
     Fullscreen.prototype.exitFullscreen = function() {
         if (document.exitFullscreen) {
-            document.exitFullscreen();
+            if (this.isFullscreen) {
+                document.exitFullscreen();
+            }
+            
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         } else if (document.mozCancelFullScreen) {

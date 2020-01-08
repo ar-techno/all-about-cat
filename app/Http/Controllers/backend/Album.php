@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\backend;
 
+use Auth;
+use App\vendor;
+use App\album as album_img;
+use App\kategori;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use File;
 
 class Album extends Controller
 {
@@ -12,9 +18,18 @@ class Album extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id='')
     {
-        return view('backend/album/album');
+        $to64             = Crypt::decryptString($id);
+        $id               = base64_decode(base64_decode($to64).base64_decode(date('ddmmY')).csrf_field());
+        $vendor           = vendor::where([['jenisvendor_id',$id],['user_id',Auth::user()->id]])->
+                                    select('id','jenisvendor_id','nama_toko')->
+                                    first();
+        $album            = album_img::where('vendor_id',$vendor->id)->whereNull('parent_id')->get();
+        $data['album']    = $album;
+        $data['info']     = $vendor;
+        $data['kategori'] = kategori::where('jenisvendor_id',$vendor->jenisvendor_id)->get();
+        return view('backend/album/album',$data);
     }
 
     /**
@@ -22,9 +37,134 @@ class Album extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if($request->isMethod('post')){
+            $input=[
+                'vendor'        =>$request->input('vendor_id'),
+                'nama_album'    =>$request->input('nama_album'),
+                'title_gambar'  =>$request->input('title_gambar'),
+                'keterangan'    =>$request->input('keterangan'),
+                'gambar'        =>$request->file('gambar'),
+            ];
+            $rule=[
+                'vendor'        =>'required',
+                'nama_album'    =>'required',
+                'title_gambar'  =>'required',
+                'keterangan'    =>'required',
+                'gambar'        =>'required',
+            ];
+
+            $v= $this->ValidasiData($input,$rule);
+            if(!$v->fails()){
+                if($request->file('gambar')) {
+                    $lokasiL  = $_FILES['gambar']['tmp_name'];
+                    $nm_fileL = rand(100,10000).time().'.'.$request->gambar->getClientOriginalExtension();
+
+                    if(!file_exists(storage_path('images/vendor/'.$request->vendor_id))){
+                        File::makeDirectory(storage_path('images/vendor/'.$request->vendor_id));
+                    }
+
+                    if(!file_exists(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'))){
+                        File::makeDirectory(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'));
+                    }
+                    $upload = $request->gambar->move(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'), $nm_fileL);
+
+                    if ($upload) {
+                        $s = new album_img;
+                        $s->vendor_id       = $input['vendor'];
+                        $s->nama_album      = $input['nama_album'];
+                        $s->title           = $input['title_gambar'];
+                        $s->keterangan      = $input['keterangan'];
+                        $s->url_thumbnail   = $nm_fileL;
+
+                        $data = $s->save() ? 1 : 0;
+                    }
+                    else{
+                        $data = 0;
+                    }
+                }
+                return $data;
+            }
+            else{
+                return $v->errors()->first();
+            }
+        }
+        else{
+            return "Sorry, your action could not be processed";
+        }
+    }
+
+    public function ImageList($id)
+    {
+        return album_img::where('parent_id',$id)->get();
+    }
+
+    public function allListGambar($id)
+    {
+        return album_img::where('vendor_id',$id)->whereNull('url_thumbnail')->get();
+    }
+
+    public function saveImages(Request $request)
+    {
+        if($request->isMethod('post')){
+            $input=[
+                'id_album'      =>$request->input('id'),
+                'vendor'        =>$request->input('vendor_id'),
+                'nama_gambar'   =>$request->input('nama_gambar'),
+                'title_gambar'  =>$request->input('title_gambar'),
+                'keterangan'    =>$request->input('keterangan'),
+                'gambar'        =>$request->file('gambar'),
+            ];
+            $rule=[
+                'id_album'      =>'required',
+                'vendor'        =>'required',
+                'nama_gambar'    =>'required',
+                'title_gambar'  =>'required',
+                'keterangan'    =>'required',
+                'gambar'        =>'required',
+            ];
+
+            $v= $this->ValidasiData($input,$rule);
+            if(!$v->fails()){
+                foreach ($request->file('gambar') as $key => $value) {
+                    $lokasiL  = $_FILES['gambar']['tmp_name'];
+                    $nm_fileL = rand(100,10000).time().'.'.$value->getClientOriginalExtension();
+
+                    if(!file_exists(storage_path('images/vendor/'.$request->vendor_id))){
+                        File::makeDirectory(storage_path('images/vendor/'.$request->vendor_id));
+                    }
+
+                    if(!file_exists(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'))){
+                        File::makeDirectory(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'));
+                    }
+                    $upload = $value->move(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'), $nm_fileL);
+
+                    if ($upload) {
+                        $s = new album_img;
+                        $s->nama_album      = '';
+                        $s->vendor_id       = $input['vendor'];
+                        $s->parent_id       = $input['id_album'];
+                        $s->nama_gambar     = $input['nama_gambar'].' pic '.($key+1);
+                        $s->title           = $input['title_gambar'];
+                        $s->keterangan      = $input['keterangan'];
+                        $s->url_gambar      = $nm_fileL;
+
+                        $data = $s->save() ? 1 : 0;
+                    }
+                    else{
+                        $data = 0;
+                    }
+                }
+                return $data;
+            }
+            else{
+                return $v->errors()->first();
+            }
+        }
+        else{
+            return "Sorry, your action could not be processed";
+        }
     }
 
     /**

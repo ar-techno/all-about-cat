@@ -4,7 +4,7 @@ function showBasicMessage() {
 }
 
 function showWithTitleMessage() {
-    swal("Gambar Produk Tidak Tersedia!", "Silhakan Upload Gambar Produk Terlebih Dahulu..");
+    swal("Kumpulan Gambar Tidak Tersedia!", "Silhakan Upload Gambar Produk Terlebih Dahulu..");
 }
 
 function showSuccessMessage() {
