@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\backend;
 
-use Auth;
 use App\menu;
-use App\User;
 use App\akses_group;
 use App\aksesmenu as akses_menu;
 use App\aksessubmenu;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,18 +20,15 @@ class AksesMenu extends Controller
     public function index()
     {
 
-        $menu  = menu::where([['parent_menu_id',null],['tampil',1]])->get();
-        // $aksessubmenu_detail  = aksessubmenu::select('menu_id');
-        $submenu = DB::table('menus as t1')
-                ->join('menus AS t2', 't2.parent_menu_id', '=', 't1.id')
-                // ->whereNotIn('t2.id',$aksessubmenu_detail)
-                ->select('t1.id as id_parent','t1.nama as nama_parent',
-                          't2.id as id_child','t2.nama as nama_child')
-                ->orderBy('id_parent','asc')
-                ->get();
-        $akses = akses_group::all();
-        $aksesmenu = akses_menu::paginate(10);
-        $aksessubmenu = aksessubmenu::paginate(10);
+        $menu    = menu::where([['parent_menu_id',null],['tampil',1]])->get();
+        $submenu = DB::table('menus as t1')->
+                            join('menus AS t2', 't2.parent_menu_id', '=', 't1.id')->
+                            select('t1.id as id_parent','t1.nama as nama_parent','t2.id as id_child','t2.nama as nama_child')->
+                            orderBy('id_parent','asc')->
+                            get();
+        $akses            = akses_group::all();
+        $aksesmenu        = akses_menu::paginate(10);
+        $aksessubmenu     = aksessubmenu::paginate(10);
         $data['menu']     = $menu;
         $data['akses']    = $akses;
         $data['submenu']  = $submenu;
@@ -71,7 +65,7 @@ class AksesMenu extends Controller
                 'Nama Menu'=>'required|max:50',
                 'Hak Akses'=>'required',
             ];
-            $v=Validator::make($input,$rule);
+            $v=$this->ValidasiData($input,$rule);
             if(!$v->fails()){
                 foreach ($input['Nama Menu'] as $key) {
                     $menu = new akses_menu;
@@ -99,7 +93,7 @@ class AksesMenu extends Controller
                 'Nama Menu'=>'required|max:50',
                 'Hak Akses'=>'required',
             ];
-            $v=Validator::make($input,$rule);
+            $v=$this->ValidasiData($input,$rule);
             if(!$v->fails()){
                 foreach ($input['Nama Menu'] as $key) {
                     $menu = new aksessubmenu;

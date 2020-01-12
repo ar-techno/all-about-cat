@@ -4,7 +4,7 @@
         <li>
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html"><img src="{{ asset('backend/assets/images/logo.svg')}}" width="30" alt="Oreo"><span class="m-l-10">All About Cats </span></a>
+                <a class="navbar-brand" href="#"><img src="{{ asset('backend/assets/images/logo.svg')}}" width="30" alt="Oreo"><span class="m-l-10">All About Cats </span></a>
             </div>
         </li>
         <li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="true"><i class="zmdi zmdi-swap"></i></a></li>
@@ -74,107 +74,6 @@
                 <li class="footer"> <a href="javascript:void(0);">View All</a> </li>
             </ul>
         </li>
-        <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-flag"></i>
-            <div class="notify">
-                <span class="heartbit"></span>
-                <span class="point"></span>
-            </div>
-            </a>
-            <ul class="dropdown-menu pullDown">
-                <li class="header">Project</li>
-                <li class="body">
-                    <ul class="menu tasks list-unstyled">
-                        <li>
-                            <a href="javascript:void(0);">
-                                <div class="progress-container progress-primary">
-                                    <span class="progress-badge">eCommerce Website</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                                            <span class="progress-value">86%</span>
-                                        </div>
-                                    </div>                        
-                                    <ul class="list-unstyled team-info">
-                                        <li class="m-r-15"><small class="text-muted">Team</small></li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar2.jpg')}}" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar3.jpg')}}" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar4.jpg')}}" alt="Avatar">
-                                        </li>                            
-                                    </ul>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <div class="progress-container progress-info">
-                                    <span class="progress-badge">iOS Game Dev</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                                            <span class="progress-value">45%</span>
-                                        </div>
-                                    </div>
-                                    <ul class="list-unstyled team-info">
-                                        <li class="m-r-15"><small class="text-muted">Team</small></li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar10.jpg')}}" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar9.jpg')}}" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar8.jpg')}}" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar7.jpg')}}" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar6.jpg')}}" alt="Avatar">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <div class="progress-container progress-warning">
-                                    <span class="progress-badge">Home Development</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="29" aria-valuemin="0" aria-valuemax="100" style="width: 29%;">
-                                            <span class="progress-value">29%</span>
-                                        </div>
-                                    </div>
-                                    <ul class="list-unstyled team-info">
-                                        <li class="m-r-15"><small class="text-muted">Team</small></li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar5.jpg')}}" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar2.jpg')}}" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="{{ asset('backend/assets/images/xs/avatar7.jpg')}}" alt="Avatar">
-                                        </li>                            
-                                    </ul>
-                                </div>
-                            </a>
-                        </li>                    
-                    </ul>
-                </li>
-                <li class="footer"><a href="javascript:void(0);">View All</a></li>
-            </ul>
-        </li>
-        <li class="hidden-sm-down">
-            <div class="input-group">                
-                <input type="text" class="form-control" placeholder="Search...">
-                <span class="input-group-addon">
-                    <i class="zmdi zmdi-search"></i>
-                </span>
-            </div>
-        </li>        
         <li class="float-right">
             <a href="javascript:void(0);" class="fullscreen hidden-sm-down" data-provide="fullscreen" data-close="true"><i class="zmdi zmdi-fullscreen"></i></a>
             <a href="{{ route('logout') }}" class="mega-menu" data-close="true"><i class="zmdi zmdi-power"></i></a>
@@ -239,45 +138,6 @@
                     <button class="t-light btn btn-default btn-simple btn-round btn-block">Light</button>
                     <button class="t-dark btn btn-default btn-round btn-block">Dark</button>
 					<button class="m_img_btn btn btn-primary btn-round btn-block">Sidebar Image</button>                    
-                </div>                
-                <div class="card">
-                    <h6>Information Summary</h6>
-                    <div class="row m-b-20">
-                        <div class="col-7">                            
-                            <small class="displayblock">MEMORY USAGE</small>
-                            <h5 class="m-b-0 h6">512</h5>
-                        </div>
-                        <div class="col-5">
-                            <div class="sparkline" data-type="bar" data-width="97%" data-height="25px" data-bar-Width="5" data-bar-Spacing="3" data-bar-Color="#00ced1">8,7,9,5,6,4,6,8</div>
-                        </div>
-                    </div>
-                    <div class="row m-b-20">
-                        <div class="col-7">                            
-                            <small class="displayblock">CPU USAGE</small>
-                            <h5 class="m-b-0 h6">90%</h5>
-                        </div>
-                        <div class="col-5">
-                            <div class="sparkline" data-type="bar" data-width="97%" data-height="25px" data-bar-Width="5" data-bar-Spacing="3" data-bar-Color="#F15F79">6,5,8,2,6,4,6,4</div>
-                        </div>
-                    </div>
-                    <div class="row m-b-20">
-                        <div class="col-7">                            
-                            <small class="displayblock">DAILY TRAFFIC</small>
-                            <h5 class="m-b-0 h6">25 142</h5>
-                        </div>
-                        <div class="col-5">
-                            <div class="sparkline" data-type="bar" data-width="97%" data-height="25px" data-bar-Width="5" data-bar-Spacing="3" data-bar-Color="#78b83e">7,5,8,7,4,2,6,5</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7">                            
-                            <small class="displayblock">DISK USAGE</small>
-                            <h5 class="m-b-0 h6">60.10%</h5>
-                        </div>
-                        <div class="col-5">
-                            <div class="sparkline" data-type="bar" data-width="97%" data-height="25px" data-bar-Width="5" data-bar-Spacing="3" data-bar-Color="#457fca">7,5,2,5,6,7,6,4</div>
-                        </div>
-                    </div>
                 </div>
             </div>                
         </div>
@@ -318,65 +178,6 @@
                             </div>
                         </div>                        
                     </div>
-                </div>
-                <div class="card">
-                    <h6>Recent Attachments</h6>
-                    <ul class="list-unstyled activity">
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="zmdi zmdi-collection-pdf l-blush"></i>                    
-                                <div class="info">
-                                    <h4>info_258.pdf</h4>                    
-                                    <small>2MB</small>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="zmdi zmdi-collection-text l-amber"></i>                    
-                                <div class="info">
-                                    <h4>newdoc_214.doc</h4>                    
-                                    <small>900KB</small>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="zmdi zmdi-image l-parpl"></i>                    
-                                <div class="info">
-                                    <h4>MG_4145.jpg')}}</h4>                    
-                                    <small>5.6MB</small>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="zmdi zmdi-image l-parpl"></i>                    
-                                <div class="info">
-                                    <h4>MG_4100.jpg')}}</h4>                    
-                                    <small>5MB</small>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="zmdi zmdi-collection-text l-amber"></i>                    
-                                <div class="info">
-                                    <h4>Reports_end.doc</h4>                    
-                                    <small>780KB</small>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="zmdi zmdi-videocam l-turquoise"></i>                    
-                                <div class="info">
-                                    <h4>movie2018.MKV</h4>                    
-                                    <small>750MB</small>
-                                </div>
-                            </a>
-                        </li>                        
-                    </ul>
                 </div>
             </div>
         </div>

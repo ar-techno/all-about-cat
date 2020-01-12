@@ -104,73 +104,6 @@
         </div>        
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12">
-                <div class="card visitors-map">
-                    <div class="header">
-                        <h2><strong>Visitors</strong> Statistics</h2>
-                        <ul class="header-dropdown">
-                            <li class="remove">
-                                <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                            </li>
-                        </ul>                        
-                    </div>
-                    <div class="body">
-                        <div id="world-map-markers" style="height: 245px;" class="m-b-10"></div>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="progress-container">
-                                    <span class="progress-badge">visitor from america</span>
-                                    <div class="progress">
-                                        <div class="progress-bar l-turquoise" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                                            <span class="progress-value">86%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress-container m-t-20">
-                                    <span class="progress-badge">visitor from Canada</span>
-                                    <div class="progress">
-                                        <div class="progress-bar l-coral" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                                            <span class="progress-value">86%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress-container m-t-20">
-                                    <span class="progress-badge">visitor from Germany</span>
-                                    <div class="progress">
-                                        <div class="progress-bar l-blue" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 38%;">
-                                            <span class="progress-value">86%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="progress-container">
-                                    <span class="progress-badge">visitor from UK</span>
-                                    <div class="progress">
-                                        <div class="progress-bar l-salmon" role="progressbar" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100" style="width: 48%;">
-                                            <span class="progress-value">86%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress-container m-t-20">
-                                    <span class="progress-badge">visitor from India</span>
-                                    <div class="progress">
-                                        <div class="progress-bar l-parpl" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                                            <span class="progress-value">86%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="progress-container m-t-20">
-                                    <span class="progress-badge">visitor from Australia</span>
-                                    <div class="progress">
-                                        <div class="progress-bar l-amber" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%;">
-                                            <span class="progress-value">86%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
                 <div class="row clearfix">
                 <div class=" col-lg-12">
                     <div class="card">
@@ -356,57 +289,6 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="card weather">
-                         <div class="header">
-                            <h2><strong>Weather</strong></h2>
-                        </div>
-                        <div class="body">
-                            <div class="city">
-                                <span>sky is clear</span>
-                                <h3>New York</h3>
-                                <img src="assets/images/weather/summer.svg" alt="">
-                            </div>
-                            <ul class="row days list-unstyled m-b-0">
-                                <li>
-                                    <h5>SUN</h5>
-                                    <img src="assets/images/weather/sky.svg" alt="">
-                                    <span class="degrees">77</span>
-                                </li>
-                                <li>
-                                    <h5>MON</h5>
-                                    <img src="assets/images/weather/rain.svg" alt="">
-                                    <span class="degrees">81</span>
-                                </li>
-                                <li>
-                                    <h5>TUE</h5>
-                                    <img src="assets/images/weather/summer.svg" alt="">
-                                    <span class="degrees">82</span>
-                                </li>
-                                <li>
-                                    <h5>WED</h5>
-                                    <img src="assets/images/weather/summer.svg" alt="">
-                                    <span class="degrees">82</span>
-                                </li>
-                                <li>
-                                    <h5>THU</h5>
-                                    <img src="assets/images/weather/cloudy.svg" alt="">
-                                    <span class="degrees">81</span>
-                                </li>
-                                <li>
-                                    <h5>FRI</h5>
-                                    <img src="assets/images/weather/summer.svg" alt="">
-                                    <span class="degrees">67</span>
-                                </li>
-                                <li>
-                                    <h5>SAT</h5>
-                                    <img src="assets/images/weather/cloudy.svg" alt="">
-                                    <span class="degrees">81</span>
-                                </li>
-                            </ul>                       
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -415,9 +297,22 @@
 @endsection
 @push('scriptbottom')
 <script src="{{ asset('backend/assets/bundles/morrisscripts.bundle.js')}}"></script><!-- Morris Plugin Js -->
-<script src="{{ asset('backend/assets/bundles/jvectormap.bundle.js')}}"></script> <!-- JVectorMap Plugin Js -->
 <script src="{{ asset('backend/assets/bundles/knob.bundle.js')}}"></script> <!-- Jquery Knob, Count To, Sparkline Js -->
 <script src="{{ asset('backend/assets/js/pages/index.js')}}"></script>
-
-
+<script type="text/javascript">
+    var browser = (function(){
+  var test = function(regexp) { return regexp.test(window.navigator.userAgent);}
+  switch(true){
+    case test(/edge/i): return "edge";
+    case test(/opr/i) && (!!window.opr || !!window.opera): return "opera";
+    case test(/chrome/i) && !!window.chrome: return "chrome";
+    case test(/trident/i) : return "ie";
+    case test(/firefox/i) : return "firefox";
+    case test(/safari/i): return "safari";
+    default: return "other";
+  }
+})();
+console.log(browser)
+    
+</script>
 @endpush

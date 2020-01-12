@@ -115,6 +115,11 @@
 		Route::get('/album/{id}', 'backend\Album@index')->name('album');
 		Route::prefix('data-album')->as('album')->group(function(){
 			Route::post('/save-album', 'backend\Album@create');
+			Route::get('/get-edit-album/{albumId}', 'backend\Album@getEditAlbum');
+			Route::post('/edit-album', 'backend\Album@update');
+			Route::post('/edit-judul-gambar', 'backend\Album@updateJudulGambar');
+			Route::post('/del-album/{idAlbum}', 'backend\Album@destroy');
+			Route::post('/del-image/{idGambar}', 'backend\Album@destroyGambar');
 			Route::post('/save-images', 'backend\Album@saveImages');
 			Route::get('/list-gambar/{id}', 'backend\Album@ImageList');
 			Route::get('/all-list-gambar/{id}', 'backend\Album@allListGambar');

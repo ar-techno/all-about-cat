@@ -6,7 +6,6 @@ use App\kategori;
 use App\jenisvendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class KategoriProduct extends Controller
 {
@@ -49,7 +48,7 @@ class KategoriProduct extends Controller
                 'nm_kategori'=>'required|max:50',
                 'jenisvendor_id'=>'required',
             ];
-            $v=Validator::make($input,$rule);
+            $v=$this->ValidasiData($input,$rule);
             if(!$v->fails()){
                     $s = new kategori;
                     $s->nama_kategori = $input['nm_kategori'];
@@ -99,7 +98,8 @@ class KategoriProduct extends Controller
                     'jenisvendor_id'=>$request->input('jenisvendor_id')];
             $rule =['nm_kategori'=>'required|max:100',
                     'jenisvendor_id'=>'required'];
-            $v=Validator::make($input,$rule);
+
+            $v=$this->ValidasiData($input,$rule);
             if(!$v->fails()){
                     $s = kategori::find($request->id);
                     $s->nama_kategori = $input['nm_kategori'];

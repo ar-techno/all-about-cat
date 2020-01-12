@@ -21,6 +21,9 @@ function showSuccessMessage() {
 function showErrorMessage() {
     swal("Ooops !", "Gagal Menyimpan Data", "error");
 }
+function showErrorUrl() {
+    swal("Ooops !", "Gagal Mengakses Url Data", "error");
+}
 
 function showErrorMessageWithTitle($value='') {
     swal("Ooops !", $value, "error");
@@ -39,6 +42,7 @@ function showConfirmMessage() {
         swal("Deleted!", "Your imaginary file has been deleted.", "success");
     });
 }
+
 
 function showCancelMessage() {
     swal({

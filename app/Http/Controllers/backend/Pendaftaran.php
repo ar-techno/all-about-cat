@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\backend;
 
-use Illuminate\Support\Facades\Validator;
 use App\vendor as new_pendaftar;
 use App\akses_group;
 use App\harikerja;
@@ -108,7 +107,7 @@ class Pendaftaran extends Controller
             $rule=[
                 'req status'=>'required|max:50',
             ];
-            $v=Validator::make($input,$rule);
+            $v=$this->ValidasiData($input,$rule);
             if(!$v->fails()){
                 $d = new_pendaftar::find($request->id);
                 $d->status = $input['req status'];

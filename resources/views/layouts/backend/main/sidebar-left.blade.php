@@ -79,61 +79,21 @@
                             <div class="image"><a href="profile.html"><img src="{{ asset('backend/assets/images/profile_av.jpg')}}" alt="User"></a></div>
                             <div class="detail">
                                 <h4>{{Auth::User()->name}}</h4>
-                                <small>{{Auth::User()->email}}</small>                          
+                                <small>@if(Auth::User()->aktif == 1 ) Online @else Offline @endif</small>                          
                             </div>
-                            <a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a>
-                            <a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a>
-                            <a title="instagram" href="#"><i class="zmdi zmdi-instagram"></i></a>
-                            <p class="text-muted">795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
-                            <div class="row">
-                                <div class="col-4">
-                                    <h5 class="m-b-5">852</h5>
-                                    <small>Following</small>
-                                </div>
-                                <div class="col-4">
-                                    <h5 class="m-b-5">13k</h5>
-                                    <small>Followers</small>
-                                </div>
-                                <div class="col-4">
-                                    <h5 class="m-b-5">234</h5>
-                                    <small>Post</small>
-                                </div>                            
-                            </div>
+                            <a title="facebook" href="{{Auth::User()->facebook}}"><i class="zmdi zmdi-facebook"></i></a>
+                            <a title="twitter" href="{{Auth::User()->twitter}}"><i class="zmdi zmdi-twitter"></i></a>
+                            <a title="instagram" href="{{Auth::User()->instagram}}"><i class="zmdi zmdi-instagram"></i></a>
+                            <p class="text-muted">{{Auth::User()->getVendorFirst->alamat}}</p>
                         </div>
                     </li>
                     <li>
                         <small class="text-muted">Email address: </small>
-                        <p>michael@gmail.com</p>
+                        <p>{{Auth::User()->email}}</p>
                         <hr>
                         <small class="text-muted">Phone: </small>
-                        <p>+ 202-555-0191</p>
-                        <hr>
-                        <ul class="list-unstyled">
-                            <li>
-                                <div>Photoshop</div>
-                                <div class="progress m-b-20">
-                                    <div class="progress-bar l-blue " role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%"> <span class="sr-only">62% Complete</span> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>Wordpress</div>
-                                <div class="progress m-b-20">
-                                    <div class="progress-bar l-green " role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 56%"> <span class="sr-only">87% Complete</span> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>HTML 5</div>
-                                <div class="progress m-b-20">
-                                    <div class="progress-bar l-amber" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%"> <span class="sr-only">32% Complete</span> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div>Angular</div>
-                                <div class="progress m-b-20">
-                                    <div class="progress-bar l-blush" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%"> <span class="sr-only">56% Complete</span> </div>
-                                </div>
-                            </li>
-                        </ul>                        
+                        <p>+ {{Auth::User()->getVendorFirst->hp}}</p>
+                        <hr>                  
                     </li>
                 </ul>
             </div>

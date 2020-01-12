@@ -5,7 +5,6 @@ namespace App\Http\Controllers\backend;
 use App\jenisvendor as jenis_vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use DataTables;
 class JenisVendor extends Controller
 {
@@ -46,7 +45,7 @@ class JenisVendor extends Controller
                 'kd_vendor'=>'required|max:50',
                 'nm_vendor'=>'required|max:50',
             ];
-            $v=Validator::make($input,$rule);
+            $v=$this->ValidasiData($input,$rule);
             if(!$v->fails()){
                     $s = new jenis_vendor;
                     $s->kode = $input['kd_vendor'];

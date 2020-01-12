@@ -13,6 +13,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\akses_group');
     }
 
+    public function getVendorFirst()
+    {
+        return $this->hasOne('App\vendor');
+    }
+
     use Notifiable;
 
     /**

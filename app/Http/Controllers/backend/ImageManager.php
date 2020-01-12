@@ -4,12 +4,8 @@ namespace App\Http\Controllers\backend;
 
 use Auth;
 use File;
-use App\layanan;
 use App\vendor;
 use App\product;
-use App\menu;
-use App\aksesmenu as akses_menu;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

@@ -7,7 +7,7 @@
             <div class="modal-body">
                 <form  id="ar-form-store" class="form-horizontal" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <input type="hidden" id="id" name="id" class="form-control" required >
+                    <input type="hidden" id="id" placeholder="id album" name="id" class="form-control" required >
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
                             <label for="vendor_id">Vendor</label>

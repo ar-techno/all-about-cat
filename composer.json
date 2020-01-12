@@ -37,7 +37,7 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/format_tgl.php"
+            "app/Helpers/library.php"
         ],
         "psr-4": {
             "App\\": "app/"

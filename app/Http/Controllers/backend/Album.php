@@ -95,6 +95,11 @@ class Album extends Controller
         }
     }
 
+    public function getEditAlbum($idAlbum)
+    {
+        return album_img::FindOrFail($idAlbum);
+    }
+
     public function ImageList($id)
     {
         return album_img::where('parent_id',$id)->get();
@@ -145,7 +150,7 @@ class Album extends Controller
                         $s->nama_album      = '';
                         $s->vendor_id       = $input['vendor'];
                         $s->parent_id       = $input['id_album'];
-                        $s->nama_gambar     = $input['nama_gambar'].' pic '.($key+1);
+                        $s->nama_gambar     = $input['nama_gambar'];
                         $s->title           = $input['title_gambar'];
                         $s->keterangan      = $input['keterangan'];
                         $s->url_gambar      = $nm_fileL;
@@ -165,6 +170,13 @@ class Album extends Controller
         else{
             return "Sorry, your action could not be processed";
         }
+    }
+
+    public function updateJudulGambar(Request $request)
+    {
+        $d = album_img::FindOrFail($request->id);
+        $d->nama_gambar = $request->judul;
+        return $d->save() ? 1 : 0;
     }
 
     /**
@@ -207,9 +219,70 @@ class Album extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if($request->isMethod('post')){
+            $input=[
+                'id_album'      =>$request->input('id'),
+                'vendor'        =>$request->input('vendor_id'),
+                'nama_album'    =>$request->input('nama_album'),
+                'title_gambar'  =>$request->input('title_gambar'),
+                'keterangan'    =>$request->input('keterangan'),
+            ];
+            $rule=[
+                'id_album'      =>'required',
+                'vendor'        =>'required',
+                'nama_album'    =>'required',
+                'title_gambar'  =>'required',
+                'keterangan'    =>'required',
+            ];
+
+            $v= $this->ValidasiData($input,$rule);
+            if(!$v->fails()){
+                if($request->file('gambar')) {
+                    $lokasiL  = $_FILES['gambar']['tmp_name'];
+                    $nm_fileL = rand(100,10000).time().'.'.$request->gambar->getClientOriginalExtension();
+
+                    if(!file_exists(storage_path('images/vendor/'.$request->vendor_id))){
+                        File::makeDirectory(storage_path('images/vendor/'.$request->vendor_id));
+                    }
+
+                    if(!file_exists(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'))){
+                        File::makeDirectory(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'));
+                    }
+                    $upload = $request->gambar->move(storage_path('images/vendor/'.$request->vendor_id.'/img-album/'), $nm_fileL);
+
+                    if ($upload) {
+                        $s = album_img::FindOrFail($request->id);
+                        $s->nama_album      = $input['nama_album'];
+                        $s->vendor_id       = $input['vendor'];
+                        $s->title           = $input['title_gambar'];
+                        $s->keterangan      = $input['keterangan'];
+                        $s->url_thumbnail   = $nm_fileL;
+
+                        $data = $s->save() ? 1 : 0;
+                    }
+                    else{
+                        $data = 0;
+                    }
+                }
+                else{
+                        $s = album_img::FindOrFail($request->id);
+                        $s->nama_album      = $input['nama_album'];
+                        $s->vendor_id       = $input['vendor'];
+                        $s->title           = $input['title_gambar'];
+                        $s->keterangan      = $input['keterangan'];
+                        $data = $s->save() ? 1 : 0;
+                }
+                return $data;
+            }
+            else{
+                return $v->errors()->first();
+            }
+        }
+        else{
+            return "Sorry, your action could not be processed";
+        }
     }
 
     /**
@@ -220,6 +293,29 @@ class Album extends Controller
      */
     public function destroy($id)
     {
-        //
+        $album = album_img::FindOrFail($id);
+        $img   = album_img::where('parent_id',$id)->get();
+        foreach ($img as $key => $value) {
+            if (file_exists(storage_path('images/vendor/'.$value->vendor_id.'/img-album/'.$value->url_gambar))) {
+                if(unlink(storage_path('images/vendor/'.$value->vendor_id.'/img-album/'.$value->url_gambar))){
+                    $delImg   = album_img::FindOrFail($value->id)->delete();
+                }
+            }
+        }
+
+        if (file_exists(storage_path('images/vendor/'.$album->vendor_id.'/img-album/'.$album->url_thumbnail))) {
+           unlink(storage_path('images/vendor/'.$album->vendor_id.'/img-album/'.$album->url_thumbnail));
+        }
+        
+        return $album->delete() ? 1 : 0;
+    }
+
+    public function destroyGambar($id)
+    {
+        $img = album_img::FindOrFail($id);
+            if (file_exists(storage_path('images/vendor/'.$img->vendor_id.'/img-album/'.$img->url_gambar))) {
+                unlink(storage_path('images/vendor/'.$img->vendor_id.'/img-album/'.$img->url_gambar));
+            }
+        return $img->delete() ? 1 : 0;
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\backend;
 
 use App\layanan;
-use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -44,7 +43,7 @@ class LayananVendor extends Controller
             $rule=[
                 'nm_layanan'=>'required|max:50',
             ];
-            $v=Validator::make($input,$rule);
+            $v=$this->ValidasiData($input,$rule);
             if(!$v->fails()){
                     $s = new layanan;
                     $s->nama_layanan = $input['nm_layanan'];

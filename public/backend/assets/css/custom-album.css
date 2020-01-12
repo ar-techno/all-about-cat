@@ -1,0 +1,112 @@
+/*col-xl-3*/
+
+.m-b-20:hover {
+    background: radial-gradient(#dadada, transparent);
+    background-image: radial-gradient(rgb(218, 218, 218), transparent);
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
+
+.col-xl-3 .btnHapus {
+    position: absolute;
+    top: 15px;
+    left: 83%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #ffffffa6;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.col-xl-3 .btnHapus:hover {
+  background-color: black;
+  opacity: 1;
+}
+
+.col-xl-3 .judulAlbum {
+    position: absolute;
+    bottom: 0px;
+    left: 6%;
+    margin: 0px;
+    -ms-transform: translate(-50%, -50%);
+    background-color: #ffffffb5;
+    color: black;
+    font-size: 12px;
+    font-weight: bolder;
+    text-transform: capitalize;
+    font-family: cursive;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+    text-align: center;
+    width: 88%;
+}
+
+.col-xl-3 .judulAlbum:hover {
+  background-color: white;
+  opacity: 1;
+}
+
+/*end*/
+
+/*Css to Album col-xl-4*/
+
+.col-xl-4 .btnHapus {
+    position: absolute;
+    top: 15px;
+    left: 83%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #ffffffa6;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.col-xl-4 .btnHapus:hover {
+  background-color: black;
+  opacity: 1;
+}
+
+.col-xl-4 .judulAlbum {
+    position: absolute;
+    bottom: 0px;
+    left: 6%;
+    margin: 0px;
+    -ms-transform: translate(-50%, -50%);
+    background-color: #ffffffb5;
+    color: black;
+    font-size: 12px;
+    font-weight: bolder;
+    text-transform: capitalize;
+    font-family: cursive;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+    text-align: center;
+    width: 88%;
+}
+
+.col-xl-4 .judulAlbum:hover {
+  background-color: white;
+  opacity: 1;
+}
+
+/*end*/
+

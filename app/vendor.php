@@ -12,6 +12,8 @@ class vendor extends Model
     {
         return $this->belongsTo('App\User');
     }
+    
+
     public function jenisvendor()
     {
         return $this->belongsTo('App\jenisvendor');

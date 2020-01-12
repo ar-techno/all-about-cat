@@ -6,9 +6,7 @@ use Auth;
 use File;
 use App\layanan;
 use App\vendor;
-use App\product;
 use App\menu;
-use App\aksesmenu as akses_menu;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -51,6 +49,7 @@ class Controller extends BaseController
     	$data['layanan'] = layanan::find($v->layanan_id);
     	return $data;
     }
+
     public function LayananAdd(Request $request)
     {
     	if($request->isMethod('post')){
@@ -65,6 +64,7 @@ class Controller extends BaseController
     	}
     	return $v->save() ? 1 : 0;
     }
+    
     public function LayananVendorEdit(Request $request)
     {
     	if($request->isMethod('post')){
