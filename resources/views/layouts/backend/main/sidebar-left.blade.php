@@ -84,7 +84,7 @@
                             <a title="facebook" href="{{Auth::User()->facebook}}"><i class="zmdi zmdi-facebook"></i></a>
                             <a title="twitter" href="{{Auth::User()->twitter}}"><i class="zmdi zmdi-twitter"></i></a>
                             <a title="instagram" href="{{Auth::User()->instagram}}"><i class="zmdi zmdi-instagram"></i></a>
-                            <p class="text-muted">{{Auth::User()->getVendorFirst->alamat}}</p>
+                            <p class="text-muted"></p>
                         </div>
                     </li>
                     <li>
@@ -92,7 +92,7 @@
                         <p>{{Auth::User()->email}}</p>
                         <hr>
                         <small class="text-muted">Phone: </small>
-                        <p>+ {{Auth::User()->getVendorFirst->hp}}</p>
+                        <p>+ </p>
                         <hr>                  
                     </li>
                 </ul>

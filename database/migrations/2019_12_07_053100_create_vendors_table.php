@@ -37,7 +37,6 @@ class CreateVendorsTable extends Migration
             $table->text('latitude')->nullable();
             $table->text('longitude')->nullable();
             $table->smallInteger('radius')->nullable()->default(20);
-            $table->json('detail')->nullable();
             $table->integer('parent_id')->nullable();
             $table->boolean('produk_status')->default(0);
             $table->string('foto_ktp')->nullable();

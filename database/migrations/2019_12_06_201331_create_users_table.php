@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('telp')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->json('detail')->nullable();
             $table->boolean('aktif')->default(0);
             $table->tinyInteger('level')->default(2);
             $table->integer('akses_group_id')->unsigned()->nullable();
