@@ -2,11 +2,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="title" id="largeModalLabel">Tambah Data Vendors</h4>
+                <h4 class="title" id="largeModalLabel">Tambah Data Layanan</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" id="ar-modal-layanan">
-                	{{ csrf_field() }}
+                    {{ csrf_field() }}
                     <div class="row clearfix" hidden>
                         <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
                             <label for="nama_menu">ID</label>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
-                            <label for="nama_menu">Nama Vendors</label>
+                            <label for="nama_menu">Nama Layanan</label>
                         </div>
                         <div class="col-lg-9 col-md-10 col-sm-8">
                             <div class="form-group">

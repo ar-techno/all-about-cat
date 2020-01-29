@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="title" id="largeModalLabel">Tambah Main Menu</h4>
+                <h4 class="title" id="largeModalLabel">Tambah Kategori</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" id="ar-modal-form">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-2 col-sm-4 form-control-label">
-                            <label for="nm_kategori">Nama Menu</label>
+                            <label for="nm_kategori">Nama Kategori</label>
                         </div>
                         <div class="col-lg-9 col-md-10 col-sm-8">
                             <div class="form-group">
