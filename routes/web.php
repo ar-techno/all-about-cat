@@ -74,8 +74,8 @@
 			Route::get('/show-edit/{id}', 'backend\StoreInformation@show');
 			Route::post('/edit', 'backend\StoreInformation@update');
 
-			Route::get('/show-hk/{id}', 'backend\HariKerja@show');
-			Route::post('/edit-hari-kerja', 'backend\HariKerja@update');
+			Route::get('/show-hk/{id}', 'backend\Harikerja@show');
+			Route::post('/edit-hari-kerja', 'backend\Harikerja@update');
 			
 			Route::get('/show-layanan/{id}', 'Controller@LayananVendor');
 			Route::post('/edit-layanan', 'Controller@LayananVendorEdit');
